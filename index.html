@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ff5a36">
+<title>Family Fun Night</title>
+<style>
+:root{
+  --ink:#17213a;--muted:#68738a;--card:#fff;--bg:#f5f7ff;
+  --pink:#ff3f81;--orange:#ff8a00;--yellow:#ffd83d;--blue:#3f6cff;
+  --teal:#12c9b5;--green:#20c46b;--red:#ff4d4d;--shadow:0 18px 45px rgba(23,33,58,.14)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:
+radial-gradient(circle at 10% 0%,#ffe0ef 0 18%,transparent 35%),
+radial-gradient(circle at 95% 5%,#d9f9ff 0 18%,transparent 36%),var(--bg)}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{max-width:1050px;margin:auto;padding:18px 14px 60px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0 14px;background:rgba(245,247,255,.9);backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px}
+.logo{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,#ff4b5c,#ffb000);box-shadow:0 8px 20px rgba(255,82,68,.25)}
+.actions{display:flex;gap:8px}
+.btn{border:0;border-radius:14px;padding:12px 16px;font-weight:850;background:#fff;color:var(--ink);box-shadow:0 8px 20px rgba(23,33,58,.09)}
+.btn.primary{background:linear-gradient(135deg,var(--blue),#7b35ff);color:#fff}
+.btn.hot{background:linear-gradient(135deg,var(--orange),var(--pink));color:#fff}
+.hero{border-radius:30px;padding:26px;color:#fff;background:linear-gradient(120deg,#ff3f81,#ff8a00 48%,#19c7b4);box-shadow:var(--shadow);overflow:hidden;position:relative}
+.hero:after{content:"✦  ✦  ✦";position:absolute;right:20px;top:12px;font-size:34px;opacity:.25}
+.hero h1{font-size:clamp(32px,7vw,58px);line-height:.98;margin:0 0 12px}
+.hero p{font-size:17px;max-width:650px;margin:0;opacity:.95}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stat{background:#fff;border-radius:18px;padding:14px;text-align:center;box-shadow:0 8px 22px rgba(23,33,58,.08)}
+.stat b{display:block;font-size:25px}.stat span{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase}
+.progress{height:12px;background:#e5e9f5;border-radius:999px;overflow:hidden;margin:14px 0}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--teal));transition:.3s}
+.card{background:var(--card);border-radius:28px;padding:18px;box-shadow:var(--shadow);margin-top:14px}
+.levels{display:flex;gap:9px;overflow:auto;padding:4px 2px 10px}
+.level{min-width:52px;height:52px;border-radius:50%;border:0;background:#edf0f8;color:#64708a;font-weight:900}
+.level.current{background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;box-shadow:0 8px 18px rgba(255,63,129,.25)}
+.level.done{background:var(--green);color:#fff}
+.category{display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border-radius:999px;background:#fff2c7;color:#7b5700;font-weight:900}
+.question{font-size:clamp(23px,5vw,34px);font-weight:950;margin:18px 0 16px;line-height:1.1}
+.visual{min-height:210px;border-radius:22px;border:3px dashed #dce1ee;display:grid;place-items:center;padding:22px;background:linear-gradient(145deg,#fff,#f7f9ff);margin-bottom:16px}
+.rebus{font-size:clamp(34px,9vw,70px);font-weight:950;text-align:center;line-height:1.15}
+.rebus .small{font-size:.52em;color:var(--muted)}
+.answer-grid{display:grid;gap:10px}
+.answer{width:100%;text-align:left;padding:16px 18px;border:2px solid #e2e6f0;background:#fff;border-radius:17px;font-weight:850;color:var(--ink);transition:.15s}
+.answer:hover{transform:translateY(-1px);border-color:#8da0ff}
+.answer.correct{background:#eafff2;border-color:var(--green);color:#087b3d}
+.answer.wrong{background:#fff0f2;border-color:var(--red);color:#b21d2a}
+.feedback{min-height:28px;margin-top:12px;font-weight:900}
+.feedback.good{color:#07934a}.feedback.bad{color:#d52c42}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.hint{background:#fff6c9;border:0;color:#765500}
+.section-title{font-size:25px;margin:0 0 5px}
+.mini{color:var(--muted);margin-top:0}
+.print-box{background:linear-gradient(135deg,#3f6cff,#7b35ff);color:#fff}
+.print-box p{color:#eef1ff}
+.print-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:600px){.print-grid{grid-template-columns:1fr}.topbar .actions .btn:first-child{display:none}}
+.footer{text-align:center;color:var(--muted);font-size:13px;padding:25px}
+@media print{
+  body{background:#fff}.topbar,.hero,.stats,.progress,.levels,.controls,.feedback,.print-box,.footer{display:none!important}
+  .card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+  .answer-grid{display:block}.answer{margin:5px 0}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="logo">🧠</div><span>Family Fun Night</span></div>
+    <div class="actions"><button class="btn" onclick="window.print()">🖨️ Print</button><button class="btn hot" onclick="restart()">↻ Restart</button></div>
+  </header>
+
+  <section class="hero">
+    <h1>Think. Laugh. Play. Win.</h1>
+    <p>A bright family game night packed with picture puzzles, word tricks, riddles, logic and quick challenges.</p>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><b id="score">0</b><span>Score</span></div>
+    <div class="stat"><b id="streak">0</b><span>Streak</span></div>
+    <div class="stat"><b id="levelNum">1</b><span>Level</span></div>
+  </div>
+
+  <div class="progress"><i id="bar"></i></div>
+
+  <section class="card">
+    <div class="levels" id="levels"></div>
+  </section>
+
+  <main class="card" id="game"></main>
+
+  <section class="card print-box">
+    <h2 class="section-title">🖨️ Screen-free game night</h2>
+    <p>Print the current puzzle, or print the complete puzzle pack with the answer key.</p>
+    <div class="print-grid">
+      <button class="btn" onclick="printCurrent()">🖨️ Print This Puzzle</button>
+      <button class="btn" onclick="printPack()">📄 Print Full Pack + Answers</button>
+    </div>
+  </section>
+
+  <footer class="footer">Made for family game night • No account required • Works on phones, tablets and computers</footer>
+</div>
+
+<script>
+"use strict";
+
+const puzzles = [
+ {type:"logic",cat:"Deduction",q:"Four people — Ava, Ben, Cara and Diego — each chose a different color: red, blue, green or yellow. Ava did not choose red or yellow. Ben chose blue. Cara did not choose green. Diego did not choose yellow. What color did Ava choose?",visual:"A ≠ RED/YELLOW<br>B = BLUE<br>C ≠ GREEN<br>D ≠ YELLOW",answers:["Red","Blue","Green","Yellow"],correct:2,hint:"Ben already has blue, so eliminate blue for everyone else."},
+ {type:"sequence",cat:"Pattern Master",q:"What number comes next?",visual:"2 • 6 • 12 • 20 • 30 • ?",answers:["40","42","44","46"],correct:1,hint:"Look at the differences: +4, +6, +8, +10."},
+ {type:"rebus",cat:"Rebus",q:"What phrase is represented by the arrangement?",visual:"TIME<br><span style='font-size:.5em'>TIME TIME TIME</span>",answers:["Time after time","Time after time after time","Time flies","Once upon a time"],correct:1,hint:"The same word appears three times, with the first one separated above the others."},
+ {type:"logic",cat:"Logic Grid",q:"Ava, Ben and Cara each brought one snack: chips, fruit or cookies. Ava did not bring chips. Ben did not bring fruit. Cara did not bring cookies. If Ava brought fruit, what did Ben bring?",visual:"AVA ≠ CHIPS<br>BEN ≠ FRUIT<br>CARA ≠ COOKIES",answers:["Chips","Fruit","Cookies","Impossible to know"],correct:0,hint:"If Ava has fruit, Ben cannot have fruit. Cara cannot have cookies."},
+ {type:"math",cat:"Number Challenge",q:"A number is multiplied by 4, then 6 is added. The result is 38. What was the original number?",visual:"□ × 4 + 6 = 38",answers:["6","7","8","9"],correct:1,hint:"Undo the +6 first, then divide by 4."},
+ {type:"sequence",cat:"Pattern Master",q:"What comes next?",visual:"1 • 4 • 9 • 16 • 25 • ?",answers:["30","32","36","49"],correct:2,hint:"These are perfect squares."},
+ {type:"word",cat:"Word Detective",q:"Which word does NOT follow the same rule as the others?",visual:"HEART • EARTH • EARTHY • HEARD",answers:["HEART","EARTH","EARTHY","HEARD"],correct:2,hint:"Look at the number of letters."},
+ {type:"logic",cat:"Truth Test",q:"Exactly ONE statement is true. Who stole the prize? Ava says, “Ben stole it.” Ben says, “Cara stole it.” Cara says, “Ava did not steal it.”",visual:"AVA → BEN<br>BEN → CARA<br>CARA → AVA DID NOT",answers:["Ava","Ben","Cara","Impossible to know"],correct:0,hint:"Test each possible thief and count how many statements become true."},
+ {type:"math",cat:"Number Challenge",q:"A $60 game is discounted by 25%, then sales tax of 10% is added to the discounted price. What is the final price?",visual:"$60 → 25% OFF → +10% TAX",answers:["$45.00","$49.50","$50.00","$51.00"],correct:1,hint:"First find 75% of $60. Then add 10% of that result."},
+ {type:"rebus",cat:"Rebus",q:"What phrase is represented?",visual:"MAN<br><span style='letter-spacing:20px'>BOARD</span>",answers:["Man overboard","Man on board","Board meeting","Man aboard"],correct:0,hint:"The word MAN is positioned above BOARD."},
+ {type:"logic",cat:"Seating Puzzle",q:"Four players sit in a row: Ava, Ben, Cara and Diego. Ava sits left of Ben. Cara sits immediately right of Diego. Ben is not next to Diego. Who must be second?",visual:"A _ B<br>D C<br>B ≠ next to D",answers:["Ava","Ben","Cara","Diego"],correct:1,hint:"Try arranging D-C as a pair, then place A before B."},
+ {type:"sequence",cat:"Pattern Master",q:"What number replaces the question mark?",visual:"3, 7, 15, 31, 63, ?",answers:["95","111","127","129"],correct:2,hint:"Each number is doubled, then 1 is added."},
+ {type:"word",cat:"Word Ladder",q:"Change ONE letter at a time to turn COLD into WARM. Which word is a valid first step?",visual:"COLD → ? → ? → ? → WARM",answers:["CORD","WORD","WORM","CALM"],correct:0,hint:"The first word must differ from COLD by exactly one letter."},
+ {type:"logic",cat:"Deduction",q:"Three boxes are labeled APPLES, ORANGES and MIXED. Every label is wrong. You may take one fruit from one box without looking inside. Which box should you choose to correctly label all three?",visual:"🍎  APPLES<br>🍊  ORANGES<br>🍎🍊  MIXED<br><span class='small'>EVERY LABEL IS WRONG</span>",answers:["APPLES","ORANGES","MIXED","Any box"],correct:2,hint:"Choose the box labeled MIXED. Since its label is wrong, it must contain only one kind of fruit."},
+ {type:"math",cat:"Challenge Math",q:"A train travels 180 miles in 3 hours. At the same speed, how far will it travel in 4 hours 30 minutes?",visual:"180 mi ÷ 3 hr → ? mi ÷ 4.5 hr",answers:["240","260","270","300"],correct:2,hint:"Find the hourly speed first."},
+ {type:"sequence",cat:"Pattern Master",q:"What comes next?",visual:"8 • 11 • 17 • 26 • 38 • ?",answers:["50","51","53","56"],correct:2,hint:"Differences are +3, +6, +9, +12."},
+ {type:"logic",cat:"Truth Test",q:"One of these people stole the prize. Only ONE statement is true. Ava says: “Ben did it.” Ben says: “Cara did it.” Cara says: “Ben is lying.” Who stole it?",visual:"AVA: BEN<br>BEN: CARA<br>CARA: BEN IS LYING",answers:["Ava","Ben","Cara","Cannot be determined"],correct:1,hint:"If Ben stole it, Ava is truthful, Ben is lying, and Cara is truthful — that's two truths, so reconsider carefully."},
+ {type:"word",cat:"Word Detective",q:"Which pair has the strongest relationship?",visual:"BIRD : NEST",answers:["Bee : Hive","Dog : Fur","Fish : Water","Tree : Leaf"],correct:0,hint:"Think of a creature and the structure it lives in."},
+ {type:"math",cat:"Challenge Math",q:"A jar has red, blue and green marbles. There are 24 total. Red is twice blue, and green is 4 more than blue. How many blue marbles are there?",visual:"R = 2B<br>G = B + 4<br>R + B + G = 24",answers:["4","5","6","8"],correct:2,hint:"Replace R and G using B, then solve."},
+ {type:"logic",cat:"Scheduling",q:"Four games — P, Q, R and S — must be played once each. P must be before Q. R must be after S. Which order is possible?",visual:"P < Q<br>S < R",answers:["Q, P, S, R","P, S, Q, R","S, R, Q, P","R, S, P, Q"],correct:1,hint:"Both rules must be satisfied."},
+ {type:"rebus",cat:"Rebus",q:"What phrase is represented?",visual:"YOU<br>JUST<br>ME",answers:["Just between you and me","You and me forever","Just you","Me between you"],correct:0,hint:"JUST is physically between YOU and ME."},
+ {type:"sequence",cat:"Pattern Master",q:"Find the missing number.",visual:"2 → 5<br>3 → 10<br>4 → 17<br>5 → ?",answers:["20","24","26","30"],correct:2,hint:"Try n² + 1."},
+ {type:"logic",cat:"Deduction",q:"Five people finish a race. Mia finishes before Zoe but after Liam. Noah finishes after Zoe. Ava finishes before Liam. Who could be third?",visual:"AVA < LIAM < MIA < ZOE < NOAH",answers:["Ava","Liam","Mia","Noah"],correct:2,hint:"The order is completely constrained by the arrows."},
+ {type:"word",cat:"Word Detective",q:"Which word can be formed by rearranging ALL the letters in 'LISTEN'?",visual:"L I S T E N",answers:["SILENT","LINES","TINSEL","All of these"],correct:3,hint:"Check whether each option uses exactly the same six letters."},
+ {type:"math",cat:"Challenge Math",q:"A family buys 3 tickets at $18 each and 2 snacks at $7 each. They use a $10 coupon. What do they pay?",visual:"3×$18 + 2×$7 − $10",answers:["$58","$60","$64","$70"],correct:2,hint:"Add the ticket and snack totals before subtracting the coupon."},
+ {type:"logic",cat:"Deduction",q:"A code has three digits. The digits are all different. The first digit is twice the second. The third digit is 3 more than the second. Which code works?",visual:"ABC<br>A = 2B<br>C = B + 3",answers:["246","369","483","612"],correct:0,hint:"Test each code against both equations."},
+ {type:"sequence",cat:"Pattern Master",q:"What comes next?",visual:"100 • 50 • 25 • 12.5 • ?",answers:["5","6.25","7.5","8.25"],correct:1,hint:"Each term is half the previous one."},
+ {type:"logic",cat:"Hard Mode",q:"A lock has a 3-digit code. 682: one digit is correct and in the right place. 614: one digit is correct but in the wrong place. 206: two digits are correct but both are in the wrong places. 738: no digit is correct. 780: one digit is correct but in the wrong place. What is the code?",visual:"682<br>614<br>206<br>738<br>780",answers:["042","024","420","402"],correct:1,hint:"Start with 738: eliminate 7, 3 and 8. Then use 780 to place 0."},
+ {type:"logic",cat:"Hard Mode",q:"You have 9 identical-looking balls. One is heavier. Using a balance scale only twice, how can you guarantee finding the heavy ball?",visual:"⚖️  9 BALLS<br>2 WEIGHINGS",answers:["Weigh 3 vs 3, then 1 vs 1 from the heavy group","Weigh 4 vs 4, then guess","Weigh 2 vs 2, then 2 vs 2","Impossible"],correct:0,hint:"Split the balls into three groups of three."},
+ {type:"math",cat:"Hard Mode",q:"A number is increased by 20%, then decreased by 20%. Is the final number the same as the original?",visual:"100 → +20% → −20%",answers:["Yes, exactly the same","No, it is 4% lower","No, it is 4% higher","No, it is 20% lower"],correct:1,hint:"Use 100 as the starting number."},
+ {type:"logic",cat:"Hard Mode",q:"There are 3 switches downstairs and one light bulb upstairs. Only one switch controls the bulb. You may manipulate switches downstairs and go upstairs only once. What is the trick?",visual:"🔘 🔘 🔘  →  💡",answers:["Turn one on and leave it","Turn one on, wait, turn it off; turn another on; then check bulb and warmth","Turn all three on","Impossible"],correct:1,hint:"The bulb gives you two clues: whether it is lit and whether it is warm."},
+ {type:"sequence",cat:"Hard Mode",q:"What is the missing number?",visual:"1, 11, 21, 1211, 111221, ?",answers:["312211","111321","212211","13112221"],correct:0,hint:"Read the previous number aloud as groups: one 1, one 2, two 1s..." }
+];
+
+let state={level:0,score:0,streak:0,answered:false};
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
+function renderLevels(){
+  const el=document.getElementById("levels");
+  el.innerHTML=puzzles.map((p,i)=>`<button class="level ${i===state.level?'current':''} ${i<state.level?'done':''}" onclick="go(${i})">${i+1}</button>`).join("");
+}
+function render(){
+  const p=puzzles[state.level],g=document.getElementById("game");
+  document.getElementById("score").textContent=state.score;
+  document.getElementById("streak").textContent=state.streak;
+  document.getElementById("levelNum").textContent=state.level+1;
+  document.getElementById("bar").style.width=((state.level+1)/puzzles.length*100)+"%";
+  renderLevels();
+  g.innerHTML=`
+    <span class="category">✨ ${esc(p.cat)}</span>
+    <div class="question">${esc(p.q)}</div>
+    <div class="visual"><div class="rebus">${p.visual}</div></div>
+    <div class="answer-grid">${p.answers.map((a,i)=>`<button class="answer" data-i="${i}" onclick="answer(${i})">${esc(a)}</button>`).join("")}</div>
+    <div id="feedback" class="feedback"></div>
+    <div class="controls">
+      <button class="btn hint" onclick="hint()">💡 Hint</button>
+      ${state.level>0?'<button class="btn" onclick="go(state.level-1)">← Previous</button>':''}
+      <button class="btn primary" id="next" onclick="next()" style="display:none">${state.level===puzzles.length-1?'Finish 🎉':'Next Level →'}</button>
+    </div>`;
+}
+function answer(i){
+  if(state.answered)return;
+  state.answered=true;
+  const p=puzzles[state.level], buttons=[...document.querySelectorAll(".answer")];
+  buttons[i].classList.add(i===p.correct?"correct":"wrong");
+  if(i!==p.correct) buttons[p.correct].classList.add("correct");
+  const f=document.getElementById("feedback");
+  if(i===p.correct){
+    state.score+=100+state.streak*10; state.streak++;
+    f.textContent="✅ Correct! Great job!";
+    f.className="feedback good";
+  }else{
+    state.streak=0;
+    f.textContent="❌ Not quite. Correct answer: "+p.answers[p.correct];
+    f.className="feedback bad";
+  }
+  document.getElementById("score").textContent=state.score;
+  document.getElementById("streak").textContent=state.streak;
+  document.getElementById("next").style.display="inline-block";
+}
+function next(){
+  if(!state.answered)return;
+  if(state.level<puzzles.length-1){state.level++;state.answered=false;render();window.scrollTo({top:0,behavior:"smooth"});}
+  else{document.getElementById("game").innerHTML=`<div style="text-align:center;padding:25px"><div style="font-size:70px">🎉</div><h2 class="section-title">You finished all ${puzzles.length} levels!</h2><p class="mini">Final score: <b>${state.score}</b></p><button class="btn hot" onclick="restart()">Play Again</button></div>`;}
+}
+function hint(){
+  const f=document.getElementById("feedback");
+  f.textContent="💡 "+puzzles[state.level].hint;
+  f.className="feedback";
+}
+function go(i){state.level=i;state.answered=false;render();window.scrollTo({top:0,behavior:"smooth"});}
+function restart(){state={level:0,score:0,streak:0,answered:false};render();window.scrollTo({top:0,behavior:"smooth"});}
+function printCurrent(){window.print();}
+function printPack(){
+  const old=document.body.innerHTML;
+  const pages=puzzles.map((p,i)=>`
+    <section style="page-break-after:always;padding:28px;font-family:Arial,sans-serif">
+      <h1>Family Fun Night — Puzzle ${i+1}</h1>
+      <p><b>${esc(p.cat)}</b></p><h2>${esc(p.q)}</h2>
+      <div style="border:2px dashed #aaa;padding:55px;text-align:center;font-size:42px;margin:25px 0">${p.visual}</div>
+      ${p.answers.map((a,n)=>`<p style="font-size:20px">☐ ${esc(a)}</p>`).join("")}
+    </section>`).join("");
+  const key=`<section style="padding:28px;font-family:Arial,sans-serif"><h1>Answer Key</h1>${puzzles.map((p,i)=>`<p><b>${i+1}.</b> ${esc(p.answers[p.correct])}</p>`).join("")}</section>`;
+  document.body.innerHTML=pages+key;
+  window.print();
+  setTimeout(()=>{document.body.innerHTML=old;render();},500);
+}
+render();
+</script>
+</body>
+</html>
