@@ -1,1 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Family Fun Night</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #fff7ed);
+    color: #172554;
+}
+
+header {
+    text-align: center;
+    padding: 35px 20px 20px;
+}
+
+.logo {
+    font-size: 42px;
+}
+
+h1 {
+    margin: 5px 0;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 17px;
+    line-height: 1.4;
+}
+
+.container {
+    width: 92%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.score-box {
+    background: white;
+    border-radius: 18px;
+    padding: 16px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    margin-bottom: 18px;
+}
+
+.game-card {
+    background: white;
+    border-radius: 25px;
+    padding: 25px 20px 30px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(0,0,0,.10);
+}
+
+.puzzle-number {
+    color: #6366f1;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 18px;
+}
+
+.instructions {
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+.clue {
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 25px;
+}
+
+/* PUZZLE 1 */
+
+.flag-e {
+    font-size: 145px;
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #b22234 0%,
+            #b22234 14%,
+            white 14%,
+            white 28%,
+            #b22234 28%,
+            #b22234 42%,
+            white 42%,
+            white 56%,
+            #b22234 56%,
+            #b22234 70%,
+            white 70%,
+            white 84%,
+            #b22234 84%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    text-shadow: 0 0 1px #1e3a8a;
+}
+
+/* PUZZLE 2 */
+
+.job {
+    font-size: 70px;
+    font-weight: 800;
+}
+
+.job span {
+    font-size: 65px;
+}
+
+/* PUZZLE 3 */
+
+.stand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 55px;
+    font-weight: bold;
+}
+
+.line {
+    width: 230px;
+    height: 5px;
+    background: #172554;
+    margin: 8px;
+}
+
+/* PUZZLE 4 */
+
+.coffee {
+    font-size: 130px;
+}
+
+/* PUZZLE 5 */
+
+.count {
+    font-size: 55px;
+    font-weight: bold;
+}
+
+.numbers {
+    font-size: 38px;
+    letter-spacing: 8px;
+}
+
+/* PUZZLE 6 */
+
+.heart {
+    font-size: 110px;
+}
+
+/* PUZZLE 7 */
+
+.look {
+    font-size: 65px;
+    font-weight: bold;
+}
+
+/* PUZZLE 8 */
+
+.rainbow {
+    font-size: 110px;
+}
+
+/* ANSWER */
+
+input {
+    width: 100%;
+    padding: 17px;
+    border: 2px solid #cbd5e1;
+    border-radius: 14px;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+}
+
+input:focus {
+    border-color: #6366f1;
+}
+
+button {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.check {
+    background: #6366f1;
+    color: white;
+}
+
+.check:hover {
+    background: #4f46e5;
+}
+
+.hint {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.next {
+    background: #16a34a;
+    color: white;
+    display: none;
+}
+
+.feedback {
+    min-height: 35px;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.correct {
+    color: #15803d;
+}
+
+.wrong {
+    color: #dc2626;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #64748b;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">🧩</div>
+
+    <h1>Family Fun Night</h1>
+
+    <div class="subtitle">
+        Picture puzzles, brain games & family challenges!
+        <br>
+        Can you figure out the answer?
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <div class="score-box">
+        ⭐ Score: <span id="score">0</span>
+    </div>
+
+
+    <div class="game-card">
+
+        <div class="puzzle-number">
+            Puzzle <span id="number">1</span>
+        </div>
+
+        <div class="instructions">
+            Look carefully at the picture.
+            What word or phrase does it represent?
+        </div>
+
+
+        <div class="clue" id="clue"></div>
+
+
+        <input
+            id="answer"
+            type="text"
+            placeholder="Type your answer..."
+        >
+
+
+        <button class="check" onclick="checkAnswer()">
+            ✅ Check Answer
+        </button>
+
+
+        <button class="hint" onclick="showHint()">
+            💡 Give Me a Hint
+        </button>
+
+
+        <div id="feedback" class="feedback"></div>
+
+
+        <button
+            id="next"
+            class="next"
+            onclick="nextPuzzle()">
+
+            Next Puzzle ➜
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<footer>
+    🧠 Think. Laugh. Play. <br>
+    New family challenges coming soon!
+</footer>
+
+
+<script>
+
+const puzzles = [
+
+    {
+        clue: `<div class="flag-e">E</div>`,
+        answers: ["army"],
+        hint: "Look at the American flag inside the letter."
+    },
+
+    {
+        clue: `
+            <div class="job">
+                J 🔍 B
+            </div>
+        `,
+        answers: ["job search", "job searching"],
+        hint: "The magnifying glass means you're looking for something."
+    },
+
+    {
+        clue: `
+            <div class="stand">
+                STAND
+                <div class="line"></div>
+                I
+            </div>
+        `,
+        answers: ["i understand", "understand"],
+        hint: "Look at where the letter I is."
+    },
+
+    {
+        clue: `<div class="coffee">☕</div>`,
+        answers: ["coffee"],
+        hint: "It's something many people drink in the morning."
+    },
+
+    {
+        clue: `
+            <div class="count">
+                COUNT
+                <div class="numbers">
+                    1 2 3 4 5
+                </div>
+            </div>
+        `,
+        answers: ["count"],
+        hint: "What are the numbers telling you to do?"
+    },
+
+    {
+        clue: `
+            <div class="heart">
+                ❤️
+            </div>
+        `,
+        answers: ["heart", "love"],
+        hint: "This symbol represents love."
+    },
+
+    {
+        clue: `
+            <div class="look">
+                L 👀 K
+            </div>
+        `,
+        answers: ["look"],
+        hint: "The eyes replace two letters."
+    },
+
+    {
+        clue: `
+            <div class="rainbow">
+                🌈
+            </div>
+        `,
+        answers: ["rainbow"],
+        hint: "Look at the colorful arc."
+    }
+
+];
+
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+
+function loadPuzzle() {
+
+    answered = false;
+
+    document.getElementById("clue").innerHTML =
+        puzzles[current].clue;
+
+    document.getElementById("number").textContent =
+        current + 1;
+
+    document.getElementById("answer").value = "";
+
+    document.getElementById("feedback").textContent = "";
+
+    document.getElementById("next").style.display = "none";
+
+    document.querySelector(".check").style.display =
+        "block";
+
+}
+
+
+function checkAnswer() {
+
+    if (answered) return;
+
+    const answer =
+        document.getElementById("answer")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const feedback =
+        document.getElementById("feedback");
+
+
+    if (!answer) {
+
+        feedback.textContent =
+            "✏️ Type an answer first!";
+
+        feedback.className =
+            "feedback wrong";
+
+        return;
+
+    }
+
+
+    const correct =
+        puzzles[current].answers.includes(answer);
+
+
+    if (correct) {
+
+        answered = true;
+
+        score++;
+
+        document.getElementById("score")
+            .textContent = score;
+
+        feedback.textContent =
+            "🎉 CORRECT! Great job!";
+
+        feedback.className =
+            "feedback correct";
+
+        document.querySelector(".check")
+            .style.display = "none";
+
+        document.getElementById("next")
+            .style.display = "block";
+
+    } else {
+
+        feedback.textContent =
+            "❌ Not quite! Try again.";
+
+        feedback.className =
+            "feedback wrong";
+
+    }
+
+}
+
+
+function showHint() {
+
+    document.getElementById("feedback")
+        .textContent =
+        "💡 " + puzzles[current].hint;
+
+    document.getElementById("feedback")
+        .className = "feedback";
+
+}
+
+
+function nextPuzzle() {
+
+    current++;
+
+    if (current >= puzzles.length) {
+
+        document.getElementById("clue").innerHTML = `
+            <div style="font-size:70px;">
+                🎉
+            </div>
+        `;
+
+        document.querySelector(".instructions")
+            .textContent =
+            "You finished all the puzzles!";
+
+        document.getElementById("feedback")
+            .textContent =
+            "🏆 Final Score: " +
+            score +
+            " / " +
+            puzzles.length;
+
+        document.getElementById("next")
+            .style.display = "none";
+
+        return;
+
+    }
+
+    loadPuzzle();
+
+}
+
+
+document.getElementById("answer")
+    .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+
+    });
+
+
+loadPuzzle();
+
+</script>
+
+</body>
+</html>
