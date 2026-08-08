@@ -1,1 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Fun Night</title>
 
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#fff7ed,#eef2ff,#fdf2f8);
+  min-height:100vh;
+  color:#172554;
+}
+
+header{
+  text-align:center;
+  padding:35px 18px 20px;
+}
+
+.logo{
+  font-size:55px;
+  margin-bottom:5px;
+}
+
+h1{
+  font-size:clamp(34px,9vw,58px);
+  font-weight:900;
+  color:#4f46e5;
+}
+
+.tagline{
+  font-size:18px;
+  color:#64748b;
+  margin:10px auto;
+  max-width:600px;
+  line-height:1.5;
+}
+
+.container{
+  width:92%;
+  max-width:700px;
+  margin:auto;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin:10px 0 18px;
+  padding-bottom:5px;
+}
+
+.tabs button{
+  white-space:nowrap;
+  border:0;
+  background:white;
+  color:#334155;
+  padding:12px 16px;
+  border-radius:25px;
+  font-weight:bold;
+  box-shadow:0 4px 12px #00000012;
+  cursor:pointer;
+}
+
+.tabs button.active{
+  background:#4f46e5;
+  color:white;
+}
+
+.scorebar{
+  background:white;
+  border-radius:20px;
+  padding:15px;
+  text-align:center;
+  font-size:19px;
+  font-weight:bold;
+  box-shadow:0 8px 25px #00000012;
+  margin-bottom:15px;
+}
+
+.game{
+  background:white;
+  border-radius:28px;
+  padding:25px 20px 30px;
+  box-shadow:0 15px 40px #00000014;
+}
+
+.category{
+  display:inline-block;
+  background:#eef2ff;
+  color:#4f46e5;
+  padding:8px 15px;
+  border-radius:25px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.question{
+  text-align:center;
+  font-size:18px;
+  color:#64748b;
+  line-height:1.5;
+}
+
+.puzzle{
+  min-height:250px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  margin:15px 0;
+  padding:20px;
+  border-radius:20px;
+  background:#f8fafc;
+}
+
+.flagE{
+  font-size:145px;
+  font-weight:900;
+  color:#fff;
+  text-shadow:
+    4px 0 #b22234,
+    -4px 0 #b22234,
+    0 4px #b22234,
+    0 -4px #b22234;
+  background:repeating-linear-gradient(
+    to bottom,
+    #b22234 0px,
+    #b22234 15px,
+    white 15px,
+    white 30px
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.bigEmoji{
+  font-size:120px;
+}
+
+.bigText{
+  font-size:60px;
+  font-weight:900;
+  line-height:1.1;
+}
+
+.stacked{
+  font-size:52px;
+  font-weight:900;
+}
+
+input{
+  width:100%;
+  border:2px solid #cbd5e1;
+  border-radius:15px;
+  padding:16px;
+  font-size:18px;
+  text-align:center;
+  outline:none;
+}
+
+input:focus{
+  border-color:#6366f1;
+}
+
+button.action{
+  width:100%;
+  border:0;
+  border-radius:15px;
+  padding:16px;
+  margin-top:10px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.check{
+  background:#4f46e5;
+  color:white;
+}
+
+.hint{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.next{
+  background:#16a34a;
+  color:white;
+  display:none;
+}
+
+.feedback{
+  text-align:center;
+  min-height:30px;
+  margin-top:15px;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.correct{color:#15803d}
+.wrong{color:#dc2626}
+
+.home{
+  text-align:center;
+  background:white;
+  border-radius:28px;
+  padding:35px 22px;
+  box-shadow:0 15px 40px #00000014;
+}
+
+.home h2{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.gameCards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:25px;
+}
+
+.gameCard{
+  border:0;
+  border-radius:20px;
+  padding:22px 10px;
+  background:#f8fafc;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:bold;
+  color:#172554;
+}
+
+.gameCard span{
+  display:block;
+  font-size:42px;
+  margin-bottom:8px;
+}
+
+.hidden{display:none}
+
+footer{
+  text-align:center;
+  padding:30px 15px;
+  color:#64748b;
+  line-height:1.6;
+}
+
+@media(max-width:500px){
+  .gameCards{
+    grid-template-columns:1fr;
+  }
+
+  .game{
+    padding:20px 15px 25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🧩</div>
+  <h1>Family Fun Night</h1>
+  <p class="tagline">
+    Brain games, picture puzzles, riddles and challenges
+    the whole family can enjoy!
+  </p>
+</header>
+
+<div class="container">
+
+  <div class="tabs">
+    <button id="homeTab" class="active" onclick="showHome()">🏠 Home</button>
+    <button onclick="startGame('picture')">🧩 Picture Puzzles</button>
+    <button onclick="startGame('kids')">👧 Kids Games</button>
+    <button onclick="startGame('riddles')">🤔 Riddles</button>
+  </div>
+
+  <div id="home">
+
+    <div class="home">
+      <h2>🎉 Let's Play!</h2>
+
+      <p class="question">
+        Pick a game and challenge your brain.
+        <br>
+        Perfect for family game night!
+      </p>
+
+      <div class="gameCards">
+
+        <button class="gameCard" onclick="startGame('picture')">
+          <span>🧩</span>
+          Picture Word Puzzles
+        </button>
+
+        <button class="gameCard" onclick="startGame('kids')">
+          <span>🌈</span>
+          Little Kids
+        </button>
+
+        <button class="gameCard" onclick="startGame('riddles')">
+          <span>🤔</span>
+          Family Riddles
+        </button>
+
+        <button class="gameCard" onclick="startGame('picture')">
+          <span>🏆</span>
+          Challenge Mode
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div id="gameArea" class="hidden">
+
+    <div class="scorebar">
+      ⭐ Score: <span id="score">0</span>
+      &nbsp; | &nbsp;
+      🧩 <span id="number">1</span>/<span id="total">1</span>
+    </div>
+
+    <div class="game">
+
+      <div id="category" class="category">
+        🧩 Picture Puzzle
+      </div>
+
+      <p id="question" class="question">
+        What word does this picture represent?
+      </p>
+
+      <div id="puzzle" class="puzzle"></div>
+
+      <input
+        id="answer"
+        type="text"
+        placeholder="Type your answer..."
+        autocomplete="off"
+      >
+
+      <button class="action check" onclick="checkAnswer()">
+        ✅ Check Answer
+      </button>
+
+      <button class="action hint" onclick="giveHint()">
+        💡 Give Me a Hint
+      </button>
+
+      <div id="feedback" class="feedback"></div>
+
+      <button id="nextButton" class="action next" onclick="nextQuestion()">
+        Next Puzzle ➜
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  🧠 Family Fun Night
+  <br>
+  Think • Laugh • Play • Connect
+</footer>
+
+
+<script>
+
+const games = {
+
+picture: [
+
+{
+html:'<div class="flagE">E</div>',
+answers:['army'],
+hint:'Think about the American flag and the letter E.',
+question:'What word does this picture represent?'
+},
+
+{
+html:'<div class="bigText">cycle<br>cycle<br>cycle</div>',
+answers:['recycle','recycle'],
+hint:'Look at the word cycle happening again and again.',
+question:'What word is represented by the repeated word?'
+},
+
+{
+html:'<div class="stacked">HEAD<br><span style="font-size:30px">HEELS</span></div>',
+answers:['head over heels','head over heels in love'],
+hint:'One word is physically above the other.',
+question:'What phrase does this picture represent?'
+},
+
+{
+html:'<div class="bigEmoji">🌧️☁️</div>',
+answers:['rain cloud','raincloud'],
+hint:'What do you call a cloud that brings rain?',
+question:'What do you see?'
+},
+
+{
+html:'<div class="bigText">MAN<br><span style="font-size:30px">BOARD</span></div>',
+answers:['man overboard','man over board'],
+hint:'Look at where MAN is compared with BOARD.',
+question:'What phrase is represented?'
+},
+
+{
+html:'<div class="bigEmoji">❤️</div>',
+answers:['love','heart'],
+hint:'This symbol is often used to show a strong feeling.',
+question:'What word does the symbol represent?'
+}
+
+],
+
+kids:[
+
+{
+html:'<div class="bigEmoji">🐱</div>',
+answers:['cat'],
+hint:'This animal says meow.',
+question:'What animal is this?'
+},
+
+{
+html:'<div class="bigEmoji">🐶</div>',
+answers:['dog'],
+hint:'This animal says woof.',
+question:'What animal is this?'
+},
+
+{
+html:'<div class="bigEmoji">🍎</div>',
+answers:['apple'],
+hint:'It can be red or green and grows on trees.',
+question:'What fruit is this?'
+},
+
+{
+html:'<div class="bigEmoji">🌈</div>',
+answers:['rainbow'],
+hint:'You may see one after rain.',
+question:'What is this colorful arc called?'
+},
+
+{
+html:'<div class="bigEmoji">⭐</div>',
+answers:['star'],
+hint:'You can see many of these in the night sky.',
+question:'What is this?'
+}
+
+],
+
+riddles:[
+
+{
+html:'<div class="bigEmoji">🤔</div>',
+answers:['echo'],
+hint:'It repeats what you say but cannot talk first.',
+question:'I speak without a mouth and hear without ears. What am I?'
+},
+
+{
+html:'<div class="bigEmoji">🕰️</div>',
+answers:['clock'],
+hint:'You look at me to know the time.',
+question:'I have hands but cannot clap. What am I?'
+},
+
+{
+html:'<div class="bigEmoji">🧽</div>',
+answers:['sponge'],
+hint:'I can soak up water.',
+question:'What gets wetter the more it dries?'
+},
+
+{
+html:'<div class="bigEmoji">🕳️</div>',
+answers:['hole'],
+hint:'The more you take away, the bigger I get.',
+question:'What am I?'
+}
+
+]
+
+};
+
+
+let currentGame='picture';
+let currentIndex=0;
+let score=0;
+let answered=false;
+
+
+function startGame(type){
+
+  currentGame=type;
+  currentIndex=0;
+  score=0;
+
+  document.getElementById('home').classList.add('hidden');
+  document.getElementById('gameArea').classList.remove('hidden');
+
+  document.getElementById('homeTab').classList.remove('active');
+
+  loadQuestion();
+}
+
+
+function showHome(){
+
+  document.getElementById('home').classList.remove('hidden');
+  document.getElementById('gameArea').classList.add('hidden');
+
+  document.getElementById('homeTab').classList.add('active');
+}
+
+
+function loadQuestion(){
+
+  answered=false;
+
+  const game=games[currentGame];
+  const item=game[currentIndex];
+
+  document.getElementById('total').textContent=game.length;
+  document.getElementById('number').textContent=currentIndex+1;
+  document.getElementById('score').textContent=score;
+
+  document.getElementById('category').textContent=
+    currentGame==='picture' ? '🧩 Picture Puzzle' :
+    currentGame==='kids' ? '🌈 Little Kids' :
+    '🤔 Family Riddle';
+
+  document.getElementById('question').textContent=item.question;
+
+  document.getElementById('puzzle').innerHTML=item.html;
+
+  document.getElementById('answer').value='';
+
+  document.getElementById('feedback').textContent='';
+  document.getElementById('feedback').className='feedback';
+
+  document.querySelector('.check').style.display='block';
+
+  document.getElementById('nextButton').style.display='none';
+
+  document.getElementById('answer').focus();
+}
+
+
+function checkAnswer(){
+
+  if(answered) return;
+
+  const input=document
+    .getElementById('answer')
+    .value
+    .trim()
+    .toLowerCase();
+
+  const feedback=document.getElementById('feedback');
+
+  if(!input){
+
+    feedback.textContent='✏️ Type an answer first!';
+    feedback.className='feedback wrong';
+
+    return;
+  }
+
+  const correct=games[currentGame][currentIndex].answers
+    .some(answer=>answer.toLowerCase()===input);
+
+  if(correct){
+
+    answered=true;
+    score++;
+
+    document.getElementById('score').textContent=score;
+
+    feedback.textContent='🎉 CORRECT! Great job!';
+    feedback.className='feedback correct';
+
+    document.querySelector('.check').style.display='none';
+
+    document.getElementById('nextButton').style.display='block';
+
+  }else{
+
+    feedback.textContent='❌ Not quite! Try again.';
+    feedback.className='feedback wrong';
+
+  }
+
+}
+
+
+function giveHint(){
+
+  const item=games[currentGame][currentIndex];
+
+  const feedback=document.getElementById('feedback');
+
+  feedback.textContent='💡 '+item.hint;
+  feedback.className='feedback';
+}
+
+
+function nextQuestion(){
+
+  currentIndex++;
+
+  if(currentIndex>=games[currentGame].length){
+
+    finishGame();
+    return;
+  }
+
+  loadQuestion();
+}
+
+
+function finishGame(){
+
+  const game=games[currentGame];
+
+  document.getElementById('puzzle').innerHTML=
+    '<div class="bigEmoji">🏆</div>';
+
+  document.getElementById('question').textContent=
+    'You finished this game!';
+
+  document.getElementById('feedback').textContent=
+    '🎉 Final Score: '+score+' out of '+game.length;
+
+  document.getElementById('feedback').className=
+    'feedback correct';
+
+  document.querySelector('.check').style.display='none';
+
+  document.querySelector('.hint').style.display='none';
+
+  document.getElementById('nextButton').textContent=
+    '🏠 Back Home';
+
+  document.getElementById('nextButton').style.display='block';
+
+  document.getElementById('nextButton').onclick=showHome;
+}
+
+
+document.getElementById('answer').addEventListener(
+  'keydown',
+  function(event){
+
+    if(event.key==='Enter'){
+      checkAnswer();
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
