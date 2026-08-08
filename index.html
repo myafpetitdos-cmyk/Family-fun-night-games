@@ -655,3 +655,1694 @@ load();
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071a3d">
+<title>Family Fun Night — American Brain Buster</title>
+
+<style>
+:root{
+  --navy:#071a3d;
+  --blue:#1769ff;
+  --sky:#20b8ff;
+  --red:#e9273f;
+  --gold:#ffd447;
+  --cream:#fffaf0;
+  --white:#ffffff;
+  --ink:#17233c;
+  --green:#16a36a;
+  --shadow:0 18px 45px rgba(7,26,61,.18);
+  --radius:24px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-height:100vh;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 5%,rgba(255,212,71,.55),transparent 25%),
+    radial-gradient(circle at 90% 10%,rgba(32,184,255,.35),transparent 28%),
+    linear-gradient(135deg,#fff9ec 0%,#eef7ff 48%,#fff0f3 100%);
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  width:min(1050px,100%);
+  margin:auto;
+  padding:18px 14px 50px;
+}
+
+/* HEADER */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  border-radius:30px;
+  padding:28px 22px;
+  color:white;
+  background:
+    linear-gradient(135deg,#071a3d 0%,#123b88 45%,#1769ff 100%);
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:auto -80px -100px auto;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:rgba(255,212,71,.2);
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  top:-70px;
+  right:20%;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  border:30px solid rgba(255,255,255,.07);
+}
+
+.brand{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.flag-icon{
+  width:58px;
+  height:42px;
+  border-radius:9px;
+  overflow:hidden;
+  border:2px solid rgba(255,255,255,.75);
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+  background:
+    linear-gradient(
+      to bottom,
+      #d9273f 0 14%,
+      white 14% 28%,
+      #d9273f 28% 42%,
+      white 42% 56%,
+      #d9273f 56% 70%,
+      white 70% 84%,
+      #d9273f 84% 100%
+    );
+  position:relative;
+}
+
+.flag-icon:before{
+  content:"";
+  position:absolute;
+  width:24px;
+  height:24px;
+  left:0;
+  top:0;
+  background:#1746a2;
+}
+
+.flag-icon:after{
+  content:"✦ ✦ ✦\A ✦ ✦ ✦";
+  white-space:pre;
+  position:absolute;
+  left:4px;
+  top:2px;
+  color:white;
+  font-size:7px;
+  line-height:9px;
+}
+
+.brand h1{
+  font-size:clamp(1.65rem,5vw,2.55rem);
+  line-height:1;
+  letter-spacing:-.04em;
+}
+
+.brand p{
+  margin-top:6px;
+  color:#d9e8ff;
+  font-weight:700;
+}
+
+.tagline{
+  position:relative;
+  z-index:1;
+  margin-top:18px;
+  font-weight:800;
+  color:#fff;
+  font-size:1rem;
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.stat{
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(7,26,61,.08);
+  border-radius:20px;
+  padding:15px 10px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(7,26,61,.08);
+}
+
+.stat-icon{
+  font-size:1.1rem;
+}
+
+.stat-label{
+  display:block;
+  margin-top:4px;
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:900;
+  color:#65718a;
+}
+
+.stat-value{
+  display:block;
+  margin-top:2px;
+  font-size:1.55rem;
+  font-weight:1000;
+  color:var(--navy);
+}
+
+/* GAME CARD */
+
+.game-card{
+  background:rgba(255,255,255,.95);
+  border-radius:30px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  border:1px solid rgba(7,26,61,.08);
+}
+
+.game-top{
+  padding:22px;
+  color:white;
+  background:
+    linear-gradient(135deg,#e9273f 0%,#f14d4d 35%,#1769ff 100%);
+}
+
+.game-top-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  background:var(--gold);
+  color:#372500;
+  border-radius:999px;
+  padding:8px 13px;
+  font-size:.78rem;
+  font-weight:1000;
+}
+
+.game-top h2{
+  margin-top:12px;
+  font-size:clamp(1.35rem,5vw,2rem);
+}
+
+.game-top p{
+  margin-top:5px;
+  opacity:.9;
+  font-weight:700;
+}
+
+/* LEVEL SELECTOR */
+
+.levels{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:16px 20px;
+  scrollbar-width:none;
+  background:#fff;
+  border-bottom:1px solid #e8edf5;
+}
+
+.levels::-webkit-scrollbar{
+  display:none;
+}
+
+.level-btn{
+  min-width:46px;
+  height:46px;
+  border-radius:50%;
+  border:2px solid #e2e8f2;
+  background:#f7f9fc;
+  color:#72809a;
+  font-weight:1000;
+  transition:.2s;
+}
+
+.level-btn.active{
+  background:var(--red);
+  border-color:var(--red);
+  color:white;
+  transform:translateY(-2px);
+  box-shadow:0 7px 15px rgba(233,39,63,.28);
+}
+
+.level-btn.unlocked:not(.active){
+  color:var(--blue);
+  border-color:#a9c6ff;
+}
+
+.level-btn.locked{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+/* PUZZLE */
+
+.puzzle-area{
+  padding:22px;
+}
+
+.progress{
+  height:9px;
+  border-radius:99px;
+  background:#e9eef6;
+  overflow:hidden;
+  margin-bottom:20px;
+}
+
+.progress-bar{
+  height:100%;
+  width:8.33%;
+  background:linear-gradient(90deg,var(--red),var(--gold),var(--blue));
+  transition:.35s;
+}
+
+.question{
+  text-align:center;
+  font-size:1rem;
+  font-weight:850;
+  color:#55627a;
+  margin-bottom:18px;
+}
+
+/* FLAG A / ARMY PUZZLE */
+
+.flag-a-wrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:260px;
+  border-radius:24px;
+  background:
+    linear-gradient(135deg,#f5f8ff,#fff7e8);
+  border:2px solid #e7edf7;
+  overflow:hidden;
+  position:relative;
+}
+
+.flag-a{
+  position:relative;
+  width:185px;
+  height:190px;
+  filter:drop-shadow(0 13px 15px rgba(7,26,61,.18));
+}
+
+.flag-a .bar{
+  position:absolute;
+  height:32px;
+  border-radius:2px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #e9273f 0 5px,
+      white 5px 10px
+    );
+}
+
+.flag-a .top{
+  width:120px;
+  left:35px;
+  top:20px;
+}
+
+.flag-a .middle{
+  width:150px;
+  left:17px;
+  top:82px;
+}
+
+.flag-a .bottom{
+  width:120px;
+  left:35px;
+  top:145px;
+}
+
+.flag-a .left{
+  width:32px;
+  height:155px;
+  left:17px;
+  top:35px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #e9273f 0 5px,
+      white 5px 10px
+    );
+}
+
+.flag-a .right{
+  width:32px;
+  height:155px;
+  right:17px;
+  top:35px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #e9273f 0 5px,
+      white 5px 10px
+    );
+}
+
+.flag-a .star-field{
+  position:absolute;
+  left:17px;
+  top:20px;
+  width:76px;
+  height:72px;
+  background:#1746a2;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:11px;
+  line-height:15px;
+  letter-spacing:3px;
+  text-align:center;
+  text-shadow:0 0 1px white;
+}
+
+.flag-a .star-field:before{
+  content:"★ ★ ★\A ★ ★ ★\A ★ ★ ★";
+  white-space:pre;
+}
+
+.visual-card{
+  min-height:260px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:24px;
+  background:linear-gradient(135deg,#f5f8ff,#fff7e8);
+  border:2px solid #e7edf7;
+  overflow:hidden;
+  padding:22px;
+}
+
+.visual-word{
+  font-size:clamp(3rem,15vw,7rem);
+  font-weight:1000;
+  letter-spacing:.06em;
+}
+
+.red-word{
+  color:#e9273f;
+}
+
+.blue-word{
+  color:#1769ff;
+}
+
+.gold-word{
+  color:#d89b00;
+}
+
+.rebus{
+  text-align:center;
+}
+
+.rebus-big{
+  font-size:clamp(3rem,15vw,6rem);
+  font-weight:1000;
+}
+
+.rebus-small{
+  margin-top:8px;
+  font-weight:1000;
+  color:#60708c;
+}
+
+/* ANSWER */
+
+.answer-box{
+  margin-top:18px;
+}
+
+.answer-box input{
+  width:100%;
+  border:3px solid #cdd7e8;
+  border-radius:18px;
+  padding:16px 17px;
+  outline:none;
+  font-size:1.05rem;
+  font-weight:850;
+  color:var(--navy);
+  transition:.2s;
+}
+
+.answer-box input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 5px rgba(23,105,255,.12);
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+
+.btn{
+  border:0;
+  border-radius:17px;
+  padding:15px 12px;
+  font-weight:1000;
+  transition:.18s;
+}
+
+.btn:active{
+  transform:scale(.97);
+}
+
+.btn-primary{
+  color:white;
+  background:linear-gradient(135deg,#1769ff,#0d4dcc);
+  box-shadow:0 9px 18px rgba(23,105,255,.23);
+}
+
+.btn-hint{
+  color:#513d00;
+  background:#ffd447;
+}
+
+.btn-secondary{
+  background:#eef3fa;
+  color:#263858;
+}
+
+.btn-print{
+  color:white;
+  background:#071a3d;
+}
+
+.feedback{
+  min-height:28px;
+  margin-top:14px;
+  text-align:center;
+  font-weight:950;
+  font-size:1rem;
+}
+
+.feedback.correct{
+  color:var(--green);
+}
+
+.feedback.wrong{
+  color:var(--red);
+}
+
+.hint{
+  margin-top:10px;
+  padding:14px;
+  border-radius:16px;
+  background:#fff8d9;
+  border:1px solid #f1dc7c;
+  color:#5d4a00;
+  font-weight:800;
+  display:none;
+}
+
+.hint.show{
+  display:block;
+}
+
+/* LEVELS INFO */
+
+.info{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+
+.info-card{
+  padding:18px;
+  background:rgba(255,255,255,.9);
+  border-radius:22px;
+  border:1px solid rgba(7,26,61,.08);
+  box-shadow:0 10px 28px rgba(7,26,61,.07);
+}
+
+.info-card h3{
+  margin-bottom:6px;
+}
+
+.info-card p{
+  color:#64728b;
+  line-height:1.55;
+  font-weight:650;
+}
+
+.footer{
+  text-align:center;
+  margin-top:25px;
+  color:#6c7890;
+  font-weight:700;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(3,12,30,.72);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:50;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-card{
+  width:min(480px,100%);
+  background:white;
+  border-radius:28px;
+  padding:25px;
+  text-align:center;
+  box-shadow:0 25px 80px rgba(0,0,0,.3);
+}
+
+.modal-card h2{
+  font-size:2rem;
+  color:var(--navy);
+}
+
+.modal-card p{
+  margin:10px 0 20px;
+  color:#62708a;
+  font-weight:700;
+  line-height:1.5;
+}
+
+/* CONFETTI */
+
+.confetti{
+  position:fixed;
+  width:10px;
+  height:18px;
+  top:-30px;
+  z-index:100;
+  animation:fall 1.4s linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+    opacity:0;
+  }
+}
+
+/* PRINT */
+
+@media print{
+  body{
+    background:white;
+  }
+
+  .hero,
+  .stats,
+  .levels,
+  .actions,
+  .info,
+  .footer,
+  .feedback,
+  .hint,
+  .modal{
+    display:none!important;
+  }
+
+  .app{
+    width:100%;
+    padding:0;
+  }
+
+  .game-card{
+    box-shadow:none;
+    border:2px solid #222;
+  }
+
+  .game-top{
+    background:white!important;
+    color:black!important;
+    border-bottom:2px solid #222;
+  }
+
+  .game-top p,
+  .badge{
+    color:black!important;
+  }
+
+  .puzzle-area{
+    padding:28px;
+  }
+
+  .answer-box input{
+    border:2px solid #222;
+  }
+}
+
+@media(min-width:700px){
+  .app{
+    padding:28px 20px 60px;
+  }
+
+  .stats{
+    gap:16px;
+  }
+
+  .puzzle-area{
+    padding:30px;
+  }
+
+  .info{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .actions{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <header class="hero">
+    <div class="brand">
+      <div class="flag-icon"></div>
+      <div>
+        <h1>Family Fun Night</h1>
+        <p>American Brain Buster 🇺🇸</p>
+      </div>
+    </div>
+
+    <div class="tagline">
+      Think • Laugh • Play • Win!
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat">
+      <span class="stat-icon">⭐</span>
+      <span class="stat-label">Score</span>
+      <span class="stat-value" id="score">0</span>
+    </div>
+
+    <div class="stat">
+      <span class="stat-icon">🔥</span>
+      <span class="stat-label">Streak</span>
+      <span class="stat-value" id="streak">0</span>
+    </div>
+
+    <div class="stat">
+      <span class="stat-icon">🏆</span>
+      <span class="stat-label">Level</span>
+      <span class="stat-value" id="levelNumber">1</span>
+    </div>
+  </section>
+
+  <main class="game-card">
+
+    <section class="game-top">
+      <div class="game-top-row">
+        <span class="badge">🇺🇸 PICTURE PUZZLE</span>
+        <strong id="levelLabel">LEVEL 1</strong>
+      </div>
+
+      <h2 id="puzzleTitle">American Brain Buster</h2>
+      <p id="puzzleSubtitle">Look closely. What word does the picture represent?</p>
+    </section>
+
+    <nav class="levels" id="levelButtons"></nav>
+
+    <section class="puzzle-area">
+
+      <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div class="question" id="question">
+        What word does this picture represent?
+      </div>
+
+      <div id="visual"></div>
+
+      <div class="answer-box">
+        <input
+          id="answerInput"
+          type="text"
+          autocomplete="off"
+          autocapitalize="characters"
+          placeholder="Type your answer..."
+          aria-label="Your answer"
+        >
+
+        <div class="actions">
+          <button class="btn btn-primary" id="checkBtn">
+            ✅ Check Answer
+          </button>
+
+          <button class="btn btn-hint" id="hintBtn">
+            💡 Give Me a Hint
+          </button>
+
+          <button class="btn btn-print" id="printBtn">
+            🖨️ Print Puzzle
+          </button>
+
+          <button class="btn btn-secondary" id="downloadBtn">
+            📄 Printable Pack
+          </button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+        <div class="hint" id="hint"></div>
+      </div>
+
+    </section>
+  </main>
+
+  <section class="info">
+    <div class="info-card">
+      <h3>🎯 How To Play</h3>
+      <p>
+        Study the picture, type the word you think it represents,
+        and check your answer. Correct answers unlock the next level.
+      </p>
+    </div>
+
+    <div class="info-card">
+      <h3>🔥 Build Your Streak</h3>
+      <p>
+        Consecutive correct answers earn bonus points.
+        Keep your streak alive and climb the levels.
+      </p>
+    </div>
+
+    <div class="info-card">
+      <h3>🖨️ Family Printables</h3>
+      <p>
+        Print the current puzzle or download a complete printable
+        puzzle pack for family game night.
+      </p>
+    </div>
+  </section>
+
+  <div class="footer">
+    🇺🇸 Family Fun Night • Made for laughs, challenges & friendly competition
+  </div>
+
+</div>
+
+<div class="modal" id="winModal">
+  <div class="modal-card">
+    <h2>🎉 You Did It!</h2>
+    <p id="winMessage">
+      Great job!
+    </p>
+    <button class="btn btn-primary" id="nextModalBtn">
+      🚀 Next Level
+    </button>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/*
+=========================================================
+FAMILY FUN NIGHT — PUZZLE DATA
+=========================================================
+
+IMPORTANT:
+Each puzzle has:
+- a visual
+- an exact intended answer
+- optional accepted answers
+- a hint
+
+The answer checker normalizes capitalization,
+spaces, punctuation and apostrophes.
+*/
+
+const puzzles = [
+
+  {
+    title: "American Brain Buster",
+    subtitle: "What word does this American picture represent?",
+    type: "flagA",
+    answers: ["ARMY"],
+    hint: "Think about the American military and the patriotic image.",
+    printablePrompt: "What word does this American flag-shaped letter represent?"
+  },
+
+  {
+    title: "Seeing Red",
+    subtitle: "What word is represented by the picture?",
+    type: "word",
+    word: "RED",
+    className: "red-word",
+    answers: ["RED"],
+    hint: "It is the color you see.",
+    printablePrompt: "What color is shown?"
+  },
+
+  {
+    title: "Blue Thinking",
+    subtitle: "What word does the picture represent?",
+    type: "word",
+    word: "BLUE",
+    className: "blue-word",
+    answers: ["BLUE"],
+    hint: "Think of the color of the sky.",
+    printablePrompt: "What color is shown?"
+  },
+
+  {
+    title: "Golden Ticket",
+    subtitle: "What word does this picture represent?",
+    type: "word",
+    word: "GOLD",
+    className: "gold-word",
+    answers: ["GOLD"],
+    hint: "Think treasure and something valuable.",
+    printablePrompt: "What word does the picture represent?"
+  },
+
+  {
+    title: "Double Trouble",
+    subtitle: "What word is represented by these two words?",
+    type: "rebus",
+    big: "GAME",
+    small: "GAME",
+    answers: ["GAME GAME", "GAMEGAME", "GAMES"],
+    hint: "There are two of the same thing.",
+    printablePrompt: "What phrase is represented?"
+  },
+
+  {
+    title: "Think Outside",
+    subtitle: "What phrase does this picture represent?",
+    type: "rebus",
+    big: "THINK",
+    small: "OUTSIDE THE BOX",
+    answers: ["THINK OUTSIDE THE BOX", "THINK OUTSIDE BOX"],
+    hint: "The clue is about thinking beyond something.",
+    printablePrompt: "What phrase is represented?"
+  },
+
+  {
+    title: "Family Time",
+    subtitle: "What phrase does this picture represent?",
+    type: "rebus",
+    big: "FAMILY",
+    small: "TIME",
+    answers: ["FAMILY TIME"],
+    hint: "Two words that describe spending time together.",
+    printablePrompt: "What phrase is represented?"
+  },
+
+  {
+    title: "Brain Power",
+    subtitle: "What does this picture represent?",
+    type: "rebus",
+    big: "BRAIN",
+    small: "POWER",
+    answers: ["BRAIN POWER", "BRAINPOWER"],
+    hint: "Your mind has plenty of it.",
+    printablePrompt: "What phrase is represented?"
+  },
+
+  {
+    title: "Star Player",
+    subtitle: "What does the picture represent?",
+    type: "rebus",
+    big: "★",
+    small: "PLAYER",
+    answers: ["STAR PLAYER", "STARPLAYER"],
+    hint: "A person who really stands out in a game.",
+    printablePrompt: "What phrase is represented?"
+  },
+
+  {
+    title: "Winning Streak",
+    subtitle: "What phrase does this picture represent?",
+    type: "rebus",
+    big: "WIN",
+    small: "WIN",
+    answers: ["WIN WIN", "WINWIN", "WIN WIN WIN"],
+    hint: "A repeated victory.",
+    printablePrompt: "What phrase is represented?"
+  },
+
+  {
+    title: "Big Brain",
+    subtitle: "What phrase does this picture represent?",
+    type: "rebus",
+    big: "BIG",
+    small: "BRAIN",
+    answers: ["BIG BRAIN", "BIGBRAIN"],
+    hint: "Someone very smart might be described this way.",
+    printablePrompt: "What phrase is represented?"
+  },
+
+  {
+    title: "Game Night",
+    subtitle: "What phrase does this picture represent?",
+    type: "rebus",
+    big: "GAME",
+    small: "NIGHT",
+    answers: ["GAME NIGHT", "GAMENIGHT"],
+    hint: "Exactly what Family Fun Night is all about!",
+    printablePrompt: "What phrase is represented?"
+  }
+
+];
+
+let currentLevel = 0;
+let score = 0;
+let streak = 0;
+let unlockedLevel = 0;
+let answeredCurrent = false;
+
+const scoreEl = document.getElementById("score");
+const streakEl = document.getElementById("streak");
+const levelNumberEl = document.getElementById("levelNumber");
+const levelLabelEl = document.getElementById("levelLabel");
+const puzzleTitleEl = document.getElementById("puzzleTitle");
+const puzzleSubtitleEl = document.getElementById("puzzleSubtitle");
+const questionEl = document.getElementById("question");
+const visualEl = document.getElementById("visual");
+const inputEl = document.getElementById("answerInput");
+const feedbackEl = document.getElementById("feedback");
+const hintEl = document.getElementById("hint");
+const progressBarEl = document.getElementById("progressBar");
+const levelButtonsEl = document.getElementById("levelButtons");
+const winModal = document.getElementById("winModal");
+const winMessage = document.getElementById("winMessage");
+const nextModalBtn = document.getElementById("nextModalBtn");
+
+/* Normalize answers consistently */
+function normalizeAnswer(value){
+  return String(value || "")
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g,"");
+}
+
+/* Build visual for puzzle */
+function renderVisual(puzzle){
+
+  if(puzzle.type === "flagA"){
+    visualEl.innerHTML = `
+      <div class="flag-a-wrap" aria-label="American flag shaped like the letter A">
+        <div class="flag-a">
+          <div class="bar top"></div>
+          <div class="bar middle"></div>
+          <div class="bar bottom"></div>
+          <div class="bar left"></div>
+          <div class="bar right"></div>
+          <div class="star-field"></div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  if(puzzle.type === "word"){
+    visualEl.innerHTML = `
+      <div class="visual-card">
+        <div class="visual-word ${puzzle.className || ""}">
+          ${escapeHtml(puzzle.word)}
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  if(puzzle.type === "rebus"){
+    visualEl.innerHTML = `
+      <div class="visual-card">
+        <div class="rebus">
+          <div class="rebus-big">${escapeHtml(puzzle.big)}</div>
+          <div class="rebus-small">${escapeHtml(puzzle.small)}</div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function escapeHtml(value){
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+/* Level buttons */
+function renderLevelButtons(){
+
+  levelButtonsEl.innerHTML = "";
+
+  puzzles.forEach((puzzle,index)=>{
+
+    const button = document.createElement("button");
+
+    button.className = "level-btn";
+
+    if(index === currentLevel){
+      button.classList.add("active");
+    }
+
+    if(index > unlockedLevel){
+      button.classList.add("locked");
+      button.textContent = "🔒";
+      button.disabled = true;
+    }else{
+      button.classList.add("unlocked");
+      button.textContent = index + 1;
+
+      button.addEventListener("click",()=>{
+        loadLevel(index);
+      });
+    }
+
+    levelButtonsEl.appendChild(button);
+  });
+}
+
+/* Load level */
+function loadLevel(index){
+
+  if(index > unlockedLevel){
+    return;
+  }
+
+  currentLevel = index;
+  answeredCurrent = false;
+
+  const puzzle = puzzles[currentLevel];
+
+  levelNumberEl.textContent = currentLevel + 1;
+  levelLabelEl.textContent = "LEVEL " + (currentLevel + 1);
+
+  puzzleTitleEl.textContent = puzzle.title;
+  puzzleSubtitleEl.textContent = puzzle.subtitle;
+  questionEl.textContent = puzzle.printablePrompt;
+
+  progressBarEl.style.width =
+    ((currentLevel + 1) / puzzles.length * 100) + "%";
+
+  renderVisual(puzzle);
+  renderLevelButtons();
+
+  inputEl.value = "";
+  inputEl.disabled = false;
+  inputEl.focus();
+
+  feedbackEl.textContent = "";
+  feedbackEl.className = "feedback";
+
+  hintEl.textContent = "";
+  hintEl.className = "hint";
+}
+
+/* Check answer */
+function checkAnswer(){
+
+  if(answeredCurrent){
+    return;
+  }
+
+  const entered = normalizeAnswer(inputEl.value);
+
+  if(!entered){
+    feedbackEl.textContent = "✏️ Type an answer first!";
+    feedbackEl.className = "feedback wrong";
+    return;
+  }
+
+  const puzzle = puzzles[currentLevel];
+
+  const correct = puzzle.answers.some(
+    answer => normalizeAnswer(answer) === entered
+  );
+
+  if(correct){
+
+    answeredCurrent = true;
+
+    const basePoints = 100;
+    const streakBonus = streak * 25;
+
+    score += basePoints + streakBonus;
+    streak++;
+
+    scoreEl.textContent = score;
+    streakEl.textContent = streak;
+
+    feedbackEl.textContent = "🎉 CORRECT! Great job!";
+    feedbackEl.className = "feedback correct";
+
+    inputEl.disabled = true;
+
+    launchConfetti();
+
+    if(currentLevel < puzzles.length - 1){
+
+      unlockedLevel = Math.max(
+        unlockedLevel,
+        currentLevel + 1
+      );
+
+      saveGame();
+
+      setTimeout(()=>{
+        showNextLevelModal();
+      },450);
+
+    }else{
+
+      saveGame();
+
+      setTimeout(()=>{
+        winMessage.textContent =
+          "You completed every Family Fun Night puzzle! Final score: " +
+          score + " points.";
+
+        nextModalBtn.textContent = "🎉 Play Again";
+        nextModalBtn.onclick = ()=>{
+          resetGame();
+          winModal.classList.remove("show");
+        };
+
+        winModal.classList.add("show");
+      },450);
+    }
+
+    renderLevelButtons();
+
+  }else{
+
+    streak = 0;
+    streakEl.textContent = streak;
+
+    feedbackEl.textContent =
+      "❌ Not quite. Look at the picture again!";
+
+    feedbackEl.className = "feedback wrong";
+  }
+}
+
+/* Hint */
+function showHint(){
+
+  const puzzle = puzzles[currentLevel];
+
+  hintEl.textContent = "💡 " + puzzle.hint;
+  hintEl.className = "hint show";
+}
+
+/* Next level modal */
+function showNextLevelModal(){
+
+  const next = currentLevel + 2;
+
+  winMessage.textContent =
+    "Level " + (currentLevel + 1) +
+    " is complete! Level " + next +
+    " is now unlocked.";
+
+  nextModalBtn.textContent = "🚀 Play Level " + next;
+
+  nextModalBtn.onclick = ()=>{
+    winModal.classList.remove("show");
+    loadLevel(currentLevel + 1);
+  };
+
+  winModal.classList.add("show");
+}
+
+/* Confetti */
+function launchConfetti(){
+
+  const pieces = 36;
+
+  for(let i=0;i<pieces;i++){
+
+    const piece = document.createElement("div");
+
+    piece.className = "confetti";
+
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.animationDelay = Math.random() * .35 + "s";
+    piece.style.transform =
+      "rotate(" + Math.random()*360 + "deg)";
+
+    const colors = [
+      "#e9273f",
+      "#1769ff",
+      "#ffd447",
+      "#16a36a",
+      "#ffffff"
+    ];
+
+    piece.style.background =
+      colors[Math.floor(Math.random()*colors.length)];
+
+    document.body.appendChild(piece);
+
+    setTimeout(()=>{
+      piece.remove();
+    },1800);
+  }
+}
+
+/* Printable current puzzle */
+function printCurrentPuzzle(){
+
+  window.print();
+}
+
+/* Printable pack download */
+function downloadPrintablePack(){
+
+  const printablePuzzles = puzzles.map((puzzle,index)=>{
+
+    let visual = "";
+
+    if(puzzle.type === "flagA"){
+      visual = `
+        <div class="flag-a">
+          <div class="bar top"></div>
+          <div class="bar middle"></div>
+          <div class="bar bottom"></div>
+          <div class="bar left"></div>
+          <div class="bar right"></div>
+          <div class="star-field"></div>
+        </div>
+      `;
+    }else if(puzzle.type === "word"){
+      visual = `
+        <div class="word ${puzzle.className || ""}">
+          ${escapeHtml(puzzle.word)}
+        </div>
+      `;
+    }else{
+      visual = `
+        <div class="rebus">
+          <div class="big">${escapeHtml(puzzle.big)}</div>
+          <div class="small">${escapeHtml(puzzle.small)}</div>
+        </div>
+      `;
+    }
+
+    return `
+      <section class="page">
+        <div class="brand">🇺🇸 FAMILY FUN NIGHT</div>
+        <h1>Level ${index + 1}</h1>
+        <h2>${escapeHtml(puzzle.title)}</h2>
+
+        <div class="visual">
+          ${visual}
+        </div>
+
+        <h3>${escapeHtml(puzzle.printablePrompt)}</h3>
+
+        <div class="answer-line">
+          Answer: __________________________________
+        </div>
+
+        <div class="hint-line">
+          Hint: ____________________________________
+        </div>
+      </section>
+    `;
+  }).join("");
+
+  const printableHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Family Fun Night Printable Puzzle Pack</title>
+
+<style>
+@page{
+  size:letter;
+  margin:.5in;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#111;
+}
+
+.page{
+  min-height:9.6in;
+  page-break-after:always;
+  text-align:center;
+  padding:30px;
+}
+
+.page:last-child{
+  page-break-after:auto;
+}
+
+.brand{
+  font-size:18px;
+  font-weight:900;
+  color:#123b88;
+  margin-bottom:25px;
+}
+
+h1{
+  font-size:42px;
+  margin:10px;
+}
+
+h2{
+  font-size:28px;
+  margin:10px 0 35px;
+}
+
+h3{
+  font-size:20px;
+  margin:30px auto;
+  max-width:600px;
+}
+
+.visual{
+  height:330px;
+  border:3px solid #222;
+  border-radius:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:20px 0;
+}
+
+.word{
+  font-size:90px;
+  font-weight:900;
+}
+
+.red-word{color:#e9273f;}
+.blue-word{color:#1769ff;}
+.gold-word{color:#c28a00;}
+
+.rebus .big{
+  font-size:90px;
+  font-weight:900;
+}
+
+.rebus .small{
+  font-size:28px;
+  font-weight:900;
+  margin-top:15px;
+}
+
+.flag-a{
+  position:relative;
+  width:185px;
+  height:190px;
+}
+
+.flag-a .bar{
+  position:absolute;
+  height:32px;
+  background:repeating-linear-gradient(
+    to bottom,
+    #e9273f 0 5px,
+    white 5px 10px
+  );
+}
+
+.flag-a .top{width:120px;left:35px;top:20px;}
+.flag-a .middle{width:150px;left:17px;top:82px;}
+.flag-a .bottom{width:120px;left:35px;top:145px;}
+
+.flag-a .left,
+.flag-a .right{
+  width:32px;
+  height:155px;
+  top:35px;
+  background:repeating-linear-gradient(
+    to bottom,
+    #e9273f 0 5px,
+    white 5px 10px
+  );
+}
+
+.flag-a .left{left:17px;}
+.flag-a .right{right:17px;}
+
+.flag-a .star-field{
+  position:absolute;
+  left:17px;
+  top:20px;
+  width:76px;
+  height:72px;
+  background:#1746a2;
+  z-index:3;
+}
+
+.flag-a .star-field:before{
+  content:"★ ★ ★\\A★ ★ ★\\A★ ★ ★";
+  white-space:pre;
+  color:white;
+  font-size:11px;
+  line-height:15px;
+  position:absolute;
+  top:8px;
+  left:7px;
+}
+
+.answer-line,
+.hint-line{
+  text-align:left;
+  margin-top:25px;
+  font-size:19px;
+  font-weight:bold;
+}
+
+@media print{
+  .page{
+    page-break-after:always;
+  }
+}
+</style>
+</head>
+
+<body>
+${printablePuzzles}
+</body>
+</html>
+`;
+
+  const blob = new Blob(
+    [printableHtml],
+    {type:"text/html;charset=utf-8"}
+  );
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "Family-Fun-Night-Printable-Puzzle-Pack.html";
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  setTimeout(()=>{
+    URL.revokeObjectURL(url);
+  },1000);
+}
+
+/* Save progress */
+function saveGame(){
+
+  localStorage.setItem(
+    "familyFunNightGame",
+    JSON.stringify({
+      score,
+      streak,
+      unlockedLevel
+    })
+  );
+}
+
+/* Restore progress */
+function restoreGame(){
+
+  try{
+
+    const saved =
+      JSON.parse(
+        localStorage.getItem("familyFunNightGame")
+      );
+
+    if(!saved){
+      return;
+    }
+
+    score = Number.isFinite(saved.score)
+      ? saved.score
+      : 0;
+
+    streak = Number.isFinite(saved.streak)
+      ? saved.streak
+      : 0;
+
+    unlockedLevel = Number.isFinite(saved.unlockedLevel)
+      ? Math.min(
+          Math.max(saved.unlockedLevel,0),
+          puzzles.length - 1
+        )
+      : 0;
+
+  }catch(error){
+
+    console.warn(
+      "Saved game data could not be restored.",
+      error
+    );
+
+    score = 0;
+    streak = 0;
+    unlockedLevel = 0;
+  }
+
+  scoreEl.textContent = score;
+  streakEl.textContent = streak;
+}
+
+/* Reset */
+function resetGame(){
+
+  score = 0;
+  streak = 0;
+  unlockedLevel = 0;
+  currentLevel = 0;
+  answeredCurrent = false;
+
+  localStorage.removeItem("familyFunNightGame");
+
+  scoreEl.textContent = "0";
+  streakEl.textContent = "0";
+
+  winModal.classList.remove("show");
+
+  loadLevel(0);
+}
+
+/* Events */
+
+document
+  .getElementById("checkBtn")
+  .addEventListener("click",checkAnswer);
+
+document
+  .getElementById("hintBtn")
+  .addEventListener("click",showHint);
+
+document
+  .getElementById("printBtn")
+  .addEventListener("click",printCurrentPuzzle);
+
+document
+  .getElementById("downloadBtn")
+  .addEventListener("click",downloadPrintablePack);
+
+inputEl.addEventListener("keydown",(event)=>{
+
+  if(event.key === "Enter"){
+    checkAnswer();
+  }
+});
+
+/* Close modal when tapping outside */
+winModal.addEventListener("click",(event)=>{
+
+  if(event.target === winModal){
+    winModal.classList.remove("show");
+  }
+});
+
+/* Start */
+restoreGame();
+loadLevel(currentLevel);
+
+</script>
+
+</body>
+</html>
