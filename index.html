@@ -402,29 +402,171 @@
 <section class="arcade-wrap" id="arcadeVault">
 
   <div class="arcade-title">
-    <div class="eyebrow">THE ARCADE VAULT</div>
-    <h2>Unlock Your Next Game 🎮</h2>
+    <!-- ARCADE VAULT -->
+
+<section id="arcadeVault" class="section arcade-section">
+
+  <div class="section-heading">
+    <div class="section-label">ARCADE VAULT</div>
+
+    <h2>Unlock. Play. Dominate.</h2>
+
     <p>
-      Earn points, win titles and unlock completely new games.
-      Every level brings a new way to play.
+      Earn points in the main games to unlock new arcade experiences.
+      Once you unlock a game, it's yours to keep.
     </p>
   </div>
 
-  <div class="arcade-progress">
-    <div class="arcade-progress-top">
-      <span>🏆 Your Progress</span>
-      <span id="arcadePoints">0 / 100</span>
-    </div>
-
-    <div class="arcade-progress-bar">
-      <span id="arcadeProgress"></span>
-    </div>
-  </div>
 
   <div class="arcade-grid">
 
-    <article class="arcade-card double" id="arcade-double">
+    <article id="arcade-double" class="arcade-card">
       <div class="arcade-icon">🎯</div>
+
+      <div class="arcade-lock" id="lock-double">
+        🔒 100 POINTS
+      </div>
+
+      <h3>DOUBLE DOWN</h3>
+
+      <p>
+        Tricky logic, patterns and observation challenges.
+        Every correct answer is worth double points.
+      </p>
+
+      <button
+        class="arcade-play"
+        type="button"
+        onclick="startArcadeGame('double')"
+      >
+        PLAY GAME →
+      </button>
+    </article>
+
+
+    <article id="arcade-tropical" class="arcade-card">
+      <div class="arcade-icon">🌴</div>
+
+      <div class="arcade-lock" id="lock-tropical">
+        🔒 250 POINTS
+      </div>
+
+      <h3>TROPICAL POP</h3>
+
+      <p>
+        Memory, patterns and quick-thinking challenges
+        with a tropical arcade twist.
+      </p>
+
+      <button
+        class="arcade-play"
+        type="button"
+        onclick="startArcadeGame('tropical')"
+      >
+        PLAY GAME →
+      </button>
+    </article>
+
+
+    <article id="arcade-vault" class="arcade-card">
+      <div class="arcade-icon">🔐</div>
+
+      <div class="arcade-lock" id="lock-vault">
+        🔒 500 POINTS
+      </div>
+
+      <h3>MYSTERY VAULT</h3>
+
+      <p>
+        Solve logic cases, eliminate suspects and crack
+        increasingly difficult mysteries.
+      </p>
+
+      <button
+        class="arcade-play"
+        type="button"
+        onclick="startArcadeGame('vault')"
+      >
+        PLAY GAME →
+      </button>
+    </article>
+
+
+    <article id="arcade-speed" class="arcade-card">
+      <div class="arcade-icon">⚡</div>
+
+      <div class="arcade-lock" id="lock-speed">
+        🔒 750 POINTS
+      </div>
+
+      <h3>SPEED FRENZY</h3>
+
+      <p>
+        Fast decisions. Limited time. One mistake can
+        destroy your streak.
+      </p>
+
+      <button
+        class="arcade-play"
+        type="button"
+        onclick="startArcadeGame('speed')"
+      >
+        PLAY GAME →
+      </button>
+    </article>
+
+
+    <article id="arcade-legend" class="arcade-card">
+      <div class="arcade-icon">👑</div>
+
+      <div class="arcade-lock" id="lock-legend">
+        🔒 1,000 POINTS
+      </div>
+
+      <h3>THE ULTIMATE</h3>
+
+      <p>
+        The hardest Family Fun Games challenge.
+        Only legends make it through.
+      </p>
+
+      <button
+        class="arcade-play"
+        type="button"
+        onclick="startArcadeGame('legend')"
+      >
+        PLAY GAME →
+      </button>
+    </article>
+
+  </div>
+
+
+  <!-- ACTIVE ARCADE GAME -->
+
+  <div
+    id="arcadeGame"
+    class="arcade-game-container"
+  >
+
+    <div class="arcade-ready">
+
+      <div class="arcade-ready-icon">
+        🎮
+      </div>
+
+      <h3>YOUR ARCADE IS READY</h3>
+
+      <p>
+        Unlock a game above and press
+        <strong>PLAY GAME</strong> to start.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
       <h3>DOUBLE DOWN</h3>
       <p>
         Risk it for double points. Fast decisions, tricky clues
