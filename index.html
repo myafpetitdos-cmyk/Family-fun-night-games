@@ -1,1 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Family Fun Games | Play, Challenge & Win</title>
+
+  <meta
+    name="description"
+    content="Family Fun Games is a family-friendly online game hub filled with trivia, puzzles, challenges, rewards and arcade fun."
+  >
+
+  <meta name="theme-color" content="#07111f">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="site-header">
+
+  <a class="logo" href="index.html">
+    FAMILY <span>FUN</span> GAMES
+  </a>
+
+  <nav aria-label="Main navigation">
+
+    <a href="#games">Games</a>
+
+    <a href="#rewards">Rewards</a>
+
+    <a href="#achievements">Achievements</a>
+
+  </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<main>
+
+<section class="hero">
+
+  <div class="hero-tag">
+    WELCOME TO FAMILY FUN GAMES
+  </div>
+
+  <h1>
+    PLAY.
+    <span>COMPETE. HAVE FUN.</span>
+  </h1>
+
+  <p>
+    Challenge yourself, compete with family and friends,
+    earn points, unlock achievements and discover your
+    next favorite game.
+  </p>
+
+  <button
+    class="primary-btn"
+    type="button"
+    onclick="scrollToGames()"
+  >
+    START PLAYING 🎮
+  </button>
+
+</section>
+
+
+<!-- =========================
+     PLAYER STATS
+========================= -->
+
+<section class="player-bar" aria-label="Player statistics">
+
+  <div class="player-stat">
+    <strong id="points">0</strong>
+    <span>POINTS</span>
+  </div>
+
+  <div class="player-stat">
+    <strong id="streak">0</strong>
+    <span>STREAK</span>
+  </div>
+
+  <div class="player-stat">
+    <strong id="wins">0</strong>
+    <span>WINS</span>
+  </div>
+
+  <div class="player-stat">
+    <strong id="level">1</strong>
+    <span>LEVEL</span>
+  </div>
+
+</section>
+
+
+<!-- =========================
+     GAME ROOM
+========================= -->
+
+<section
+  class="section"
+  id="games"
+>
+
+  <div class="section-heading">
+
+    <div class="section-label">
+      GAME ROOM
+    </div>
+
+    <h2>
+      Pick Your Challenge
+    </h2>
+
+    <p>
+      Choose a game, pick your difficulty and see
+      how many points you can earn.
+    </p>
+
+  </div>
+
+
+  <div class="game-grid">
+
+    <article class="game-card cyan">
+
+      <div class="game-number">
+        GAME 01
+      </div>
+
+      <h3>Quick Trivia</h3>
+
+      <p>
+        Test your knowledge with fast questions
+        covering fun facts and everyday topics.
+      </p>
+
+      <button
+        type="button"
+        onclick="chooseGame('trivia')"
+      >
+        PLAY GAME →
+      </button>
+
+    </article>
+
+
+    <article class="game-card yellow">
+
+      <div class="game-number">
+        GAME 02
+      </div>
+
+      <h3>Word Challenge</h3>
+
+      <p>
+        Put your vocabulary and word skills
+        to the test.
+      </p>
+
+      <button
+        type="button"
+        onclick="chooseGame('word')"
+      >
+        PLAY GAME →
+      </button>
+
+    </article>
+
+
+    <article class="game-card coral">
+
+      <div class="game-number">
+        GAME 03
+      </div>
+
+      <h3>Riddle Rush</h3>
+
+      <p>
+        Think carefully and solve tricky riddles
+        before time runs out.
+      </p>
+
+      <button
+        type="button"
+        onclick="chooseGame('riddle')"
+      >
+        PLAY GAME →
+      </button>
+
+    </article>
+
+
+    <article class="game-card green">
+
+      <div class="game-number">
+        GAME 04
+      </div>
+
+      <h3>Brain Battle</h3>
+
+      <p>
+        Challenge your brain with quick-thinking
+        questions and surprising answers.
+      </p>
+
+      <button
+        type="button"
+        onclick="chooseGame('brain')"
+      >
+        PLAY GAME →
+      </button>
+
+    </article>
+
+
+    <article class="game-card purple">
+
+      <div class="game-number">
+        GAME 05
+      </div>
+
+      <h3>Mystery Challenge</h3>
+
+      <p>
+        Follow the clues, think outside the box
+        and crack the mystery.
+      </p>
+
+      <button
+        type="button"
+        onclick="chooseGame('mystery')"
+      >
+        PLAY GAME →
+      </button>
+
+    </article>
+
+
+    <article class="game-card orange">
+
+      <div class="game-number">
+        GAME 06
+      </div>
+
+      <h3>Family Challenge</h3>
+
+      <p>
+        A fun collection of questions designed
+        for friendly family competition.
+      </p>
+
+      <button
+        type="button"
+        onclick="chooseGame('family')"
+      >
+        PLAY GAME →
+      </button>
+
+    </article>
+
+
+    <article class="game-card blue">
+
+      <div class="game-number">
+        GAME 07
+      </div>
+
+      <h3>Speed Round</h3>
+
+      <p>
+        Think fast, answer quickly and build
+        your winning streak.
+      </p>
+
+      <button
+        type="button"
+        onclick="chooseGame('speed')"
+      >
+        PLAY GAME →
+      </button>
+
+    </article>
+
+
+    <article class="game-card pink">
+
+      <div class="game-number">
+        GAME 08
+      </div>
+
+      <h3>Ultimate Challenge</h3>
+
+      <p>
+        Ready for the hardest round?
+        See if you can become the champion.
+      </p>
+
+      <button
+        type="button"
+        onclick="chooseGame('ultimate')"
+      >
+        PLAY GAME →
+      </button>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     DIFFICULTY
+========================= -->
+
+<section class="section">
+
+  <div class="section-heading">
+
+    <div class="section-label">
+      CHOOSE YOUR LEVEL
+    </div>
+
+    <h2>
+      How Hard Do You Want It?
+    </h2>
+
+    <p>
+      Start easy or jump straight into the challenge.
+    </p>
+
+  </div>
+
+
+  <div class="difficulty-grid">
+
+    <button
+      class="difficulty"
+      type="button"
+      onclick="startGame('easy')"
+    >
+
+      <span>LEVEL 01</span>
+
+      <strong>Easy 😊</strong>
+
+      <small>
+        Warm up and build your confidence.
+      </small>
+
+    </button>
+
+
+    <button
+      class="difficulty"
+      type="button"
+      onclick="startGame('medium')"
+    >
+
+      <span>LEVEL 02</span>
+
+      <strong>Medium 🧠</strong>
+
+      <small>
+        A little harder. A lot more fun.
+      </small>
+
+    </button>
+
+
+    <button
+      class="difficulty"
+      type="button"
+      onclick="startGame('hard')"
+    >
+
+      <span>LEVEL 03</span>
+
+      <strong>Hard 🔥</strong>
+
+      <small>
+        Bring your A-game.
+      </small>
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     GAME SCREEN
+========================= -->
+
+<section
+  class="game-screen"
+  id="gameScreen"
+>
+
+  <div class="game-top">
+
+    <div>
+
+      <div
+        class="difficulty-pill"
+        id="gameDifficulty"
+      >
+        READY
+      </div>
+
+      <h2 id="activeGameTitle">
+        Choose a Game
+      </h2>
+
+    </div>
+
+    <div class="question-count">
+
+      <span id="questionNumber">
+        0
+      </span>
+
+      /
+
+      <span id="questionTotal">
+        0
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div class="question-card">
+
+    <div
+      class="question-type"
+      id="questionType"
+    >
+      GAME READY
+    </div>
+
+    <h3 id="questionText">
+      Choose a game above to begin your challenge!
+    </h3>
+
+  </div>
+
+
+  <div
+    class="answer-grid"
+    id="answerArea"
+  >
+  </div>
+
+
+  <div
+    class="game-message"
+    id="gameMessage"
+  >
+  </div>
+
+
+  <button
+    class="next-btn"
+    id="nextButton"
+    type="button"
+    onclick="nextQuestion()"
+    style="display:none;"
+  >
+    NEXT QUESTION →
+  </button>
+
+</section>
+
+
+<!-- =========================
+     ACHIEVEMENTS
+========================= -->
+
+<section
+  class="section"
+  id="achievements"
+>
+
+  <div class="section-heading">
+
+    <div class="section-label">
+      ACHIEVEMENTS
+    </div>
+
+    <h2>
+      Can You Unlock Them All?
+    </h2>
+
+    <p>
+      Keep playing to unlock badges and show off
+      your progress.
+    </p>
+
+  </div>
+
+
+  <div class="achievement-grid">
+
+    <div
+      class="achievement"
+      id="badgeFirst"
+    >
+      <strong>🏆 First Win</strong>
+      <span>
+        Win your first game.
+      </span>
+    </div>
+
+
+    <div
+      class="achievement locked"
+      id="badgeFive"
+    >
+      <strong>🔥 Five Wins</strong>
+      <span>
+        Win five games.
+      </span>
+    </div>
+
+
+    <div
+      class="achievement locked"
+      id="badgeStreak"
+    >
+      <strong>⚡ Streak Master</strong>
+      <span>
+        Build a winning streak.
+      </span>
+    </div>
+
+
+    <div
+      class="achievement locked"
+      id="badge250"
+    >
+      <strong>💎 250 Points</strong>
+      <span>
+        Earn 250 points.
+      </span>
+    </div>
+
+
+    <div
+      class="achievement locked"
+      id="badge500"
+    >
+      <strong>👑 500 Points</strong>
+      <span>
+        Earn 500 points.
+      </span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     REWARDS
+========================= -->
+
+<section
+  class="section"
+  id="rewards"
+>
+
+  <div class="section-heading">
+
+    <div class="section-label">
+      REWARDS
+    </div>
+
+    <h2>
+      Spend Your Points
+    </h2>
+
+    <p>
+      Keep playing, earn points and unlock rewards.
+    </p>
+
+  </div>
+
+
+  <div class="reward-grid">
+
+    <article class="reward-card">
+
+      <div class="reward-cost">
+        100
+      </div>
+
+      <h3>
+        ⭐ Super Star
+      </h3>
+
+      <p>
+        You've earned bragging rights.
+      </p>
+
+      <button
+        type="button"
+        onclick="redeemReward(100,'Super Star')"
+      >
+        REDEEM
+      </button>
+
+    </article>
+
+
+    <article class="reward-card">
+
+      <div class="reward-cost">
+        250
+      </div>
+
+      <h3>
+        🏆 Champion
+      </h3>
+
+      <p>
+        Show everyone who runs game night.
+      </p>
+
+      <button
+        type="button"
+        onclick="redeemReward(250,'Champion')"
+      >
+        REDEEM
+      </button>
+
+    </article>
+
+
+    <article class="reward-card">
+
+      <div class="reward-cost">
+        500
+      </div>
+
+      <h3>
+        👑 Brain Royalty
+      </h3>
+
+      <p>
+        The ultimate Family Fun Games title.
+      </p>
+
+      <button
+        type="button"
+        onclick="redeemReward(500,'Brain Royalty')"
+      >
+        REDEEM
+      </button>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ARCADE
+========================= -->
+
+<section class="section">
+
+  <div class="section-heading">
+
+    <div class="section-label">
+      ARCADE
+    </div>
+
+    <h2>
+      More Ways To Play
+    </h2>
+
+    <p>
+      Unlock more arcade-style challenges as you
+      progress through Family Fun Games.
+    </p>
+
+  </div>
+
+
+  <div class="arcade-grid">
+
+    <article class="arcade-card">
+
+      <div class="arcade-icon">
+        🎮
+      </div>
+
+      <div class="arcade-lock">
+        UNLOCKABLE
+      </div>
+
+      <h3>
+        Quick Tap
+      </h3>
+
+      <p>
+        Test your speed and reaction time.
+      </p>
+
+      <button
+        class="arcade-play"
+        type="button"
+      >
+        PLAY
+      </button>
+
+    </article>
+
+
+    <article class="arcade-card">
+
+      <div class="arcade-icon">
+        🧩
+      </div>
+
+      <div class="arcade-lock">
+        UNLOCKABLE
+      </div>
+
+      <h3>
+        Puzzle Pop
+      </h3>
+
+      <p>
+        Match your way through the challenge.
+      </p>
+
+      <button
+        class="arcade-play"
+        type="button"
+      >
+        PLAY
+      </button>
+
+    </article>
+
+
+    <article class="arcade-card">
+
+      <div class="arcade-icon">
+        ⚡
+      </div>
+
+      <div class="arcade-lock">
+        UNLOCKABLE
+      </div>
+
+      <h3>
+        Speed Rush
+      </h3>
+
+      <p>
+        How fast can you react?
+      </p>
+
+      <button
+        class="arcade-play"
+        type="button"
+      >
+        PLAY
+      </button>
+
+    </article>
+
+
+    <article class="arcade-card">
+
+      <div class="arcade-icon">
+        🧠
+      </div>
+
+      <div class="arcade-lock">
+        UNLOCKABLE
+      </div>
+
+      <h3>
+        Brain Blitz
+      </h3>
+
+      <p>
+        A fast-paced brain challenge.
+      </p>
+
+      <button
+        class="arcade-play"
+        type="button"
+      >
+        PLAY
+      </button>
+
+    </article>
+
+
+    <article class="arcade-card">
+
+      <div class="arcade-icon">
+        🏆
+      </div>
+
+      <div class="arcade-lock">
+        UNLOCKABLE
+      </div>
+
+      <h3>
+        Champion Mode
+      </h3>
+
+      <p>
+        The ultimate arcade challenge.
+      </p>
+
+      <button
+        class="arcade-play"
+        type="button"
+      >
+        PLAY
+      </button>
+
+    </article>
+
+  </div>
+
+
+  <div class="arcade-game-container">
+
+    <div class="arcade-ready">
+
+      <div class="arcade-ready-icon">
+        🎮
+      </div>
+
+      <h3>
+        YOUR ARCADE IS READY
+      </h3>
+
+      <p>
+        Unlock a game above and press
+        <strong>PLAY GAME</strong>
+        to start.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <strong>
+    FAMILY FUN GAMES
+  </strong>
+
+  <p>
+    Play together. Think together.
+  </p>
+
+
+  <nav
+    class="footer-links"
+    aria-label="Footer navigation"
+  >
+
+    <a href="about.html">
+      About
+    </a>
+
+    <a href="contact.html">
+      Contact
+    </a>
+
+    <a href="privacy.html">
+      Privacy
+    </a>
+
+    <a href="terms.html">
+      Terms
+    </a>
+
+    <a href="play.html">
+      Scan to Play
+    </a>
+
+  </nav>
+
+
+  <small>
+    © 2026 Family Fun Games
+  </small>
+
+</footer>
+
+
+<!-- =========================
+     SCRIPTS
+========================= -->
+
+<script src="app.js"></script>
+
+</body>
+</html>
