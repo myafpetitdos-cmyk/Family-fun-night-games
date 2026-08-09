@@ -1,1 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Family Fun Games</title>
+
+  <meta
+    name="description"
+    content="Family Fun Games — play brain games, mysteries, trivia, puzzles and multiplayer challenges together."
+  >
+
+  <meta
+    name="theme-color"
+    content="#ff4f91"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <link
+    rel="manifest"
+    href="manifest.json"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="icons/icon-192.png"
+  >
+
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8403050471749938"
+    crossorigin="anonymous"
+  ></script>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <header class="site-header">
+
+    <a
+      class="logo"
+      href="#"
+      aria-label="Family Fun Games home"
+    >
+      FAMILY <span>FUN</span> GAMES
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="#games">Games</a>
+      <a href="#rewards">Rewards</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#arcadeVault">Arcade</a>
+    </nav>
+
+  </header>
+
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+  <main>
+
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
+
+    <section class="hero">
+
+      <div class="hero-tag">
+        PLAY • THINK • COMPETE
+      </div>
+
+      <h1>
+        Family game night,
+        <span>leveled up.</span>
+      </h1>
+
+      <p>
+        Brain teasers, trivia, secret codes, riddles,
+        mysteries and fast challenges for the whole family.
+      </p>
+
+      <button
+        class="primary-btn"
+        type="button"
+        onclick="scrollToGames()"
+      >
+        START PLAYING
+      </button>
+
+    </section>
+
+
+    <!-- ===================================================
+         PLAYER BAR
+    ==================================================== -->
+
+    <section
+      class="player-bar"
+      aria-label="Player statistics"
+    >
+
+      <div class="player-stat">
+        <strong id="points">0</strong>
+        <span>POINTS</span>
+      </div>
+
+      <div class="player-stat">
+        <strong id="streak">0</strong>
+        <span>STREAK</span>
+      </div>
+
+      <div class="player-stat">
+        <strong id="wins">0</strong>
+        <span>WINS</span>
+      </div>
+
+      <div class="player-stat">
+        <strong id="level">1</strong>
+        <span>LEVEL</span>
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         GAME ROOM
+    ==================================================== -->
+
+    <section
+      id="games"
+      class="section"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-label">
+          THE GAME ROOM
+        </div>
+
+        <h2>
+          Pick your challenge.
+        </h2>
+
+        <p>
+          Every game has Beginner, Intermediate and Expert
+          challenges.
+        </p>
+
+      </div>
+
+
+      <div class="game-grid">
+
+
+        <!-- BRAIN -->
+
+        <article class="game-card cyan">
+
+          <div class="game-number">
+            01
+          </div>
+
+          <h3>
+            Brain Teasers
+          </h3>
+
+          <p>
+            Tricky questions that make you stop,
+            think and look twice.
+          </p>
+
+          <button
+            type="button"
+            onclick="chooseGame('brain')"
+          >
+            PLAY →
+          </button>
+
+        </article>
+
+
+        <!-- TRIVIA -->
+
+        <article class="game-card yellow">
+
+          <div class="game-number">
+            02
+          </div>
+
+          <h3>
+            Trivia Rush
+          </h3>
+
+          <p>
+            Science, animals, history, geography,
+            sports and surprising facts.
+          </p>
+
+          <button
+            type="button"
+            onclick="chooseGame('trivia')"
+          >
+            PLAY →
+          </button>
+
+        </article>
+
+
+        <!-- DECODE -->
+
+        <article class="game-card coral">
+
+          <div class="game-number">
+            03
+          </div>
+
+          <h3>
+            Decode It
+          </h3>
+
+          <p>
+            Crack secret messages, patterns,
+            symbols and hidden words.
+          </p>
+
+          <button
+            type="button"
+            onclick="chooseGame('decode')"
+          >
+            PLAY →
+          </button>
+
+        </article>
+
+
+        <!-- REBUS -->
+
+        <article class="game-card green">
+
+          <div class="game-number">
+            04
+          </div>
+
+          <h3>
+            Rebus Puzzles
+          </h3>
+
+          <p>
+            Look at the clues differently.
+            Can you discover the hidden phrase?
+          </p>
+
+          <button
+            type="button"
+            onclick="chooseGame('rebus')"
+          >
+            PLAY →
+          </button>
+
+        </article>
+
+
+        <!-- NUMBER -->
+
+        <article class="game-card purple">
+
+          <div class="game-number">
+            05
+          </div>
+
+          <h3>
+            Number Ninja
+          </h3>
+
+          <p>
+            Patterns, math tricks and number
+            challenges designed to fool you.
+          </p>
+
+          <button
+            type="button"
+            onclick="chooseGame('number')"
+          >
+            PLAY →
+          </button>
+
+        </article>
+
+
+        <!-- WORD -->
+
+        <article class="game-card orange">
+
+          <div class="game-number">
+            06
+          </div>
+
+          <h3>
+            Word Scramble
+          </h3>
+
+          <p>
+            Unscramble words and beat the clock.
+          </p>
+
+          <button
+            type="button"
+            onclick="chooseGame('word')"
+          >
+            PLAY →
+          </button>
+
+        </article>
+
+
+        <!-- MYSTERY -->
+
+        <article class="game-card blue">
+
+          <div class="game-number">
+            07
+          </div>
+
+          <h3>
+            Mystery Case
+          </h3>
+
+          <p>
+            Follow the clues and solve the case.
+          </p>
+
+          <button
+            type="button"
+            onclick="chooseGame('mystery')"
+          >
+            PLAY →
+          </button>
+
+        </article>
+
+
+        <!-- QUICK -->
+
+        <article class="game-card pink">
+
+          <div class="game-number">
+            08
+          </div>
+
+          <h3>
+            Quick Fire
+          </h3>
+
+          <p>
+            Fast questions. Fast decisions.
+            How long can your streak survive?
+          </p>
+
+          <button
+            type="button"
+            onclick="chooseGame('quick')"
+          >
+            PLAY →
+          </button>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         DIFFICULTY
+    ==================================================== -->
+
+    <section
+      id="difficulty"
+      class="section difficulty-section"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-label">
+          CHOOSE YOUR LEVEL
+        </div>
+
+        <h2 id="selectedGameTitle">
+          Choose a game first.
+        </h2>
+
+        <p id="selectedGameDescription">
+          Select a game above to unlock the difficulty levels.
+        </p>
+
+      </div>
+
+
+      <div class="difficulty-grid">
+
+        <button
+          class="difficulty beginner"
+          type="button"
+          onclick="startGame('beginner')"
+        >
+          <span>LEVEL 01</span>
+          <strong>BEGINNER</strong>
+          <small>Warm up your brain.</small>
+        </button>
+
+
+        <button
+          class="difficulty intermediate"
+          type="button"
+          onclick="startGame('intermediate')"
+        >
+          <span>LEVEL 02</span>
+          <strong>INTERMEDIATE</strong>
+          <small>Now we're getting tricky.</small>
+        </button>
+
+
+        <button
+          class="difficulty expert"
+          type="button"
+          onclick="startGame('expert')"
+        >
+          <span>LEVEL 03</span>
+          <strong>EXPERT</strong>
+          <small>Think very carefully.</small>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         MAIN GAME SCREEN
+    ==================================================== -->
+
+    <section
+      id="gameScreen"
+      class="game-screen"
+    >
+
+      <div class="game-top">
+
+        <div>
+
+          <span
+            id="gameDifficulty"
+            class="difficulty-pill"
+          >
+            BEGINNER
+          </span>
+
+          <h2 id="activeGameTitle">
+            Challenge
+          </h2>
+
+        </div>
+
+
+        <div class="question-count">
+          QUESTION
+          <strong id="questionNumber">1</strong>
+          /
+          <strong id="questionTotal">10</strong>
+        </div>
+
+      </div>
+
+
+      <div class="question-card">
+
+        <div
+          class="question-type"
+          id="questionType"
+        >
+          BRAIN CHALLENGE
+        </div>
+
+        <h3 id="questionText">
+          Question loading...
+        </h3>
+
+      </div>
+
+
+      <div
+        id="answerArea"
+        class="answer-grid"
+      ></div>
+
+
+      <div
+        id="gameMessage"
+        class="game-message"
+        aria-live="polite"
+      ></div>
+
+
+      <button
+        id="nextButton"
+        class="next-btn"
+        type="button"
+        onclick="nextQuestion()"
+        style="display: none;"
+      >
+        NEXT CHALLENGE →
+      </button>
+
+    </section>
+
+
+    <!-- ===================================================
+         ACHIEVEMENTS
+    ==================================================== -->
+
+    <section
+      id="achievements"
+      class="section"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-label">
+          ACHIEVEMENTS
+        </div>
+
+        <h2>
+          Earn your bragging rights.
+        </h2>
+
+      </div>
+
+
+      <div class="achievement-grid">
+
+        <div
+          id="badgeFirst"
+          class="achievement locked"
+        >
+          <strong>FIRST WIN</strong>
+          <span>Answer your first question.</span>
+        </div>
+
+
+        <div
+          id="badgeFive"
+          class="achievement locked"
+        >
+          <strong>FIVE WINS</strong>
+          <span>Get five questions right.</span>
+        </div>
+
+
+        <div
+          id="badgeStreak"
+          class="achievement locked"
+        >
+          <strong>HOT STREAK</strong>
+          <span>Reach a five-question streak.</span>
+        </div>
+
+
+        <div
+          id="badge250"
+          class="achievement locked"
+        >
+          <strong>250 CLUB</strong>
+          <span>Earn 250 points.</span>
+        </div>
+
+
+        <div
+          id="badge500"
+          class="achievement locked"
+        >
+          <strong>BRAIN MASTER</strong>
+          <span>Earn 500 points.</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         REWARDS
+    ==================================================== -->
+
+    <section
+      id="rewards"
+      class="section"
+    >
+
+      <div class="section-heading">
+
+        <div class="section-label">
+          REWARD VAULT
+        </div>
+
+        <h2>
+          You've earned it.
+        </h2>
+
+        <p>
+          Spend your points on digital titles and achievements.
+        </p>
+
+      </div>
+
+
+      <div class="reward-grid">
+
+
+        <div class="reward-card">
+
+          <div class="reward-cost">
+            100
+          </div>
+
+          <h3>
+            SUPER STAR
+          </h3>
+
+          <p>
+            Unlock the Super Star title.
+          </p>
+
+          <button
+            type="button"
+            onclick="redeemReward(100, 'Super Star')"
+          >
+            UNLOCK
+          </button>
+
+        </div>
+
+
+        <div class="reward-card">
+
+          <div class="reward-cost">
+            250
+          </div>
+
+          <h3>
+            CHAMPION
+          </h3>
+
+          <p>
+            Unlock the Champion title.
+          </p>
+
+          <button
+            type="button"
+            onclick="redeemReward(250, 'Champion')"
+          >
+            UNLOCK
+          </button>
+
+        </div>
+
+
+        <div class="reward-card">
+
+          <div class="reward-cost">
+            500
+          </div>
+
+          <h3>
+            BRAIN ROYALTY
+          </h3>
+
+          <p>
+            Unlock the ultimate player title.
+          </p>
+
+          <button
+            type="button"
+            onclick="redeemReward(500, 'Brain Royalty')"
+          >
+            UNLOCK
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         ARCADE VAULT
+    ==================================================== -->
+
+    <section
+      class="arcade-wrap"
+      id="arcadeVault"
+    >
+
+      <div class="arcade-title">
+
+        <div class="eyebrow">
+          THE ARCADE VAULT
+        </div>
+
+        <h2>
+          Unlock Your Next Game 🎮
+        </h2>
+
+        <p>
+          Earn points, win titles and unlock completely new games.
+          Every level brings a new way to play.
+        </p>
+
+      </div>
+
+
+      <div class="arcade-progress">
+
+        <div class="arcade-progress-top">
+          <span>🏆 Your Progress</span>
+          <span id="arcadePoints">0 / 100</span>
+        </div>
+
+        <div class="arcade-progress-bar">
+          <span id="arcadeProgress"></span>
+        </div>
+
+      </div>
+
+
+      <div class="arcade-grid">
+
+
+        <!-- DOUBLE DOWN -->
+
+        <article
+          class="arcade-card double"
+          id="arcade-double"
+        >
+
+          <div class="arcade-icon">
+            🎯
+          </div>
+
+          <h3>
+            DOUBLE DOWN
+          </h3>
+
+          <p>
+            Risk it for double points. Fast decisions, tricky clues
+            and escalating streak bonuses.
+          </p>
+
+          <div
+            class="arcade-lock"
+            id="lock-double"
+          >
+            🔒 100 POINTS
+          </div>
+
+          <br>
+
+          <button
+            class="arcade-play"
+            type="button"
+            onclick="startArcadeGame('double')"
+          >
+            PLAY DOUBLE DOWN →
+          </button>
+
+        </article>
+
+
+        <!-- TROPICAL POP -->
+
+        <article
+          class="arcade-card tropical"
+          id="arcade-tropical"
+        >
+
+          <div class="arcade-icon">
+            🌴
+          </div>
+
+          <h3>
+            TROPICAL POP
+          </h3>
+
+          <p>
+            Spot patterns, remember the board, find the impostor
+            and survive increasingly wild rounds.
+          </p>
+
+          <div
+            class="arcade-lock"
+            id="lock-tropical"
+          >
+            🔒 250 POINTS
+          </div>
+
+          <br>
+
+          <button
+            class="arcade-play"
+            type="button"
+            onclick="startArcadeGame('tropical')"
+          >
+            PLAY TROPICAL POP →
+          </button>
+
+        </article>
+
+
+        <!-- MYSTERY VAULT -->
+
+        <article
+          class="arcade-card vault"
+          id="arcade-vault"
+        >
+
+          <div class="arcade-icon">
+            🔐
+          </div>
+
+          <h3>
+            MYSTERY VAULT
+          </h3>
+
+          <p>
+            Investigate clues, eliminate suspects and crack
+            the final vault combination.
+          </p>
+
+          <div
+            class="arcade-lock"
+            id="lock-vault"
+          >
+            🔒 500 POINTS
+          </div>
+
+          <br>
+
+          <button
+            class="arcade-play"
+            type="button"
+            onclick="startArcadeGame('vault')"
+          >
+            ENTER THE VAULT →
+          </button>
+
+        </article>
+
+
+        <!-- SPEED FRENZY -->
+
+        <article
+          class="arcade-card speed"
+          id="arcade-speed"
+        >
+
+          <div class="arcade-icon">
+            ⚡
+          </div>
+
+          <h3>
+            SPEED FRENZY
+          </h3>
+
+          <p>
+            The rules keep changing. Memory, visuals, words and
+            rapid decisions all collide.
+          </p>
+
+          <div
+            class="arcade-lock"
+            id="lock-speed"
+          >
+            🔒 750 POINTS
+          </div>
+
+          <br>
+
+          <button
+            class="arcade-play"
+            type="button"
+            onclick="startArcadeGame('speed')"
+          >
+            ENTER SPEED FRENZY →
+          </button>
+
+        </article>
+
+
+        <!-- THE ULTIMATE -->
+
+        <article
+          class="arcade-card legend"
+          id="arcade-legend"
+        >
+
+          <div class="arcade-icon">
+            👑
+          </div>
+
+          <h3>
+            THE ULTIMATE
+          </h3>
+
+          <p>
+            The final Family Fun challenge. Memory, deduction,
+            wordplay and logic combine into one boss-level game.
+          </p>
+
+          <div
+            class="arcade-lock"
+            id="lock-legend"
+          >
+            🔒 1,000 POINTS
+          </div>
+
+          <br>
+
+          <button
+            class="arcade-play"
+            type="button"
+            onclick="startArcadeGame('legend')"
+          >
+            ENTER THE ULTIMATE →
+          </button>
+
+        </article>
+
+      </div>
+
+
+      <!-- ARCADE GAME AREA -->
+
+      <div
+        class="arcade-game"
+        id="arcadeGame"
+      >
+
+        <div class="arcade-result">
+
+          <div class="big">
+            🎮
+          </div>
+
+          <h2>
+            Your unlocked games appear here.
+          </h2>
+
+          <p>
+            Earn points to open the arcade.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         ARCADE UNLOCK MODAL
+    ==================================================== -->
+
+    <div
+      class="arcade-unlock"
+      id="arcadeUnlock"
+      aria-hidden="true"
+    >
+
+      <div class="unlock-box">
+
+        <div
+          class="trophy"
+          id="unlockTrophy"
+        >
+          🏆
+        </div>
+
+        <div>
+          NEW TITLE UNLOCKED
+        </div>
+
+        <h2 id="unlockTitle">
+          SUPERSTAR
+        </h2>
+
+        <p id="unlockGame">
+          A new game is waiting for you.
+        </p>
+
+        <button
+          type="button"
+          onclick="closeUnlock()"
+        >
+          KEEP PLAYING
+        </button>
+
+        <button
+          type="button"
+          onclick="playUnlockedGame()"
+        >
+          PLAY NOW 🎮
+        </button>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer>
+
+    <strong>
+      FAMILY FUN GAMES
+    </strong>
+
+    <p>
+      Play together. Think together.
+    </p>
+
+    <small>
+      © 2026 Family Fun Games
+    </small>
+
+  </footer>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script src="app.js"></script>
+
+</body>
+</html>
