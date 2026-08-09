@@ -809,3 +809,797 @@ function redeemReward(cost, title) {
    INITIALIZE
    ========================================================= */
 updatePlayerDisplay();
+/* =========================================
+   FAMILY FUN ARCADE ENGINE
+   ========================================= */
+
+const ARCADE_GAMES = {
+  double:{
+    points:100,
+    title:"SUPERSTAR",
+    game:"DOUBLE DOWN"
+  },
+
+  tropical:{
+    points:250,
+    title:"CHAMPION",
+    game:"TROPICAL POP"
+  },
+
+  vault:{
+    points:500,
+    title:"BRAIN ROYALTY",
+    game:"MYSTERY VAULT"
+  },
+
+  speed:{
+    points:750,
+    title:"ELITE",
+    game:"SPEED FRENZY"
+  },
+
+  legend:{
+    points:1000,
+    title:"LEGEND",
+    game:"THE ULTIMATE"
+  }
+};
+
+const ARCADE_CHALLENGES = {
+
+double:[
+{
+q:"Which word doesn't belong?",
+a:["SHARK","DOLPHIN","WHALE","PENGUIN"],
+c:3
+},
+{
+q:"You have 10 seconds. Which symbol appeared twice?",
+a:["⭐ 🌙 ⭐ 🔥","⭐ 🌙 🔥 🍀","🌙 🔥 🍀 🦋","🍀 🦋 🌙 🔥"],
+c:0
+},
+{
+q:"What comes next?",
+a:["AZ","BY","CX","DW"],
+c:0
+},
+{
+q:"Which one is the odd one out?",
+a:["Circle","Triangle","Square","Blue"],
+c:3
+},
+{
+q:"A detective says: 'The thief was not wearing red.' Which clue is strongest?",
+a:["A red jacket was found","A blue hat was found","A red shoe was found","A green scarf was found"],
+c:1
+},
+{
+q:"Which word can follow all three?",
+a:["HOUSE","LIGHT","FALL","STAR"],
+c:3
+},
+{
+q:"Which is hiding the pattern?",
+a:["ABABAB","ABCABC","AABBCC","ABCCBA"],
+c:2
+},
+{
+q:"Which choice completes the relationship?",
+a:["Bird : Nest","Bee : Hive","Lion : ?","Fish : Water"],
+c:2
+}
+],
+
+tropical:[
+{
+q:"🌴 🌺 🥭 🌴 🌺 ?",
+a:["🥭","🌴","🐚","🍍"],
+c:0
+},
+{
+q:"You see this board for 3 seconds: 🍍 🐚 🌺 🥭 🦜. Which disappeared?",
+a:["🍍","🐚","🌺","🦜"],
+c:1
+},
+{
+q:"Which symbol is the impostor?",
+a:["🥭","🍍","🍉","🐙"],
+c:3
+},
+{
+q:"🍉 → 2, 🥭 → 4, 🍍 → 6. What is 🥥?",
+a:["5","7","8","10"],
+c:2
+},
+{
+q:"Which row matches the first row exactly?",
+a:[
+"🌺 🐚 🍍 🦜",
+"🌺 🐚 🍍 🦜",
+"🌺 🐚 🥭 🦜",
+"🌺 🍍 🐚 🦜"
+],
+c:1
+},
+{
+q:"Which item moved?",
+a:["🌴","🐚","🦜","🥭"],
+c:2
+}
+],
+
+vault:[
+{
+q:"CASE FILE: One suspect always lies. Alex says Ben did it. Ben says Cara did it. Cara says Ben is lying. Who is most suspicious?",
+a:["Alex","Ben","Cara","Not enough evidence"],
+c:3
+},
+{
+q:"A vault has a 3-digit code. The first digit is 2 more than the second. The third is twice the second. Which works?",
+a:["426","315","214","531"],
+c:0
+},
+{
+q:"Three doors: GOLD, SILVER, BLACK. Only one is safe. GOLD says 'BLACK is safe.' BLACK says 'GOLD is lying.' SILVER says 'I am not safe.' Exactly one statement is true. Which door?",
+a:["GOLD","SILVER","BLACK","Impossible"],
+c:1
+},
+{
+q:"The stolen diamond was NOT in the kitchen. It was NOT with Maya. It was either in the vault or office. Leo was in the office. Where should you investigate?",
+a:["Kitchen","Maya's room","Vault","Outside"],
+c:2
+}
+],
+
+speed:[
+{
+q:"FAST! Which number is missing?",
+a:["17","18","19","20"],
+c:2
+},
+{
+q:"FAST! Which word is backwards?",
+a:["TAC","GOD","EMOH","KOOB"],
+c:2
+},
+{
+q:"FAST! Which doesn't belong?",
+a:["👁️","👂","👃","🖐️"],
+c:3
+},
+{
+q:"FAST! Complete: 1, 3, 6, 10, ?",
+a:["12","13","14","15"],
+c:3
+},
+{
+q:"FAST! Which pair matches?",
+a:["AB / BA","CD / DC","EF / FE","GH / GI"],
+c:0
+},
+{
+q:"FAST! What comes first alphabetically?",
+a:["SHARK","SHELL","SHIP","SHOE"],
+c:1
+},
+{
+q:"FAST! Which is different?",
+a:["121","144","169","180"],
+c:3
+},
+{
+q:"FAST! Which one is impossible?",
+a:["Square circle","Red apple","Blue ocean","Green leaf"],
+c:0
+}
+],
+
+legend:[
+{
+q:"FINAL ROUND: Four people entered four rooms. Maya was not in Room 1. Leo was not in Room 4. Ava was in Room 2. Who can be Room 4?",
+a:["Maya","Leo","Ava","Cannot know"],
+c:0
+},
+{
+q:"FINAL ROUND: Remember these: 🦊 🔑 🌙 🍎. Which was second?",
+a:["🦊","🔑","🌙","🍎"],
+c:1
+},
+{
+q:"FINAL ROUND: What phrase is represented? TIME / TIME / TIME",
+a:["Time after time","Three times","Time out","Long time"],
+c:0
+},
+{
+q:"FINAL ROUND: If every blue card is hidden and this card is blue, what can you conclude?",
+a:["It is visible","It is hidden","It is red","Nothing"],
+c:1
+},
+{
+q:"FINAL ROUND: The final code is the number of letters in STAR + the number of letters in MOON.",
+a:["6","7","8","9"],
+c:2
+}
+]
+
+};
+
+let arcadeState={
+  current:null,
+  index:0,
+  score:0,
+  streak:0,
+  timer:null,
+  time:30
+};
+
+function getMainPoints(){
+
+  /*
+   This supports several common variable names.
+   If your existing game already has a points variable,
+   the first matching one is used.
+  */
+
+  if(typeof window.points==="number") return window.points;
+  if(typeof window.score==="number") return window.score;
+
+  const el=document.querySelector(
+    "#points,#score,.points,.score,[data-points]"
+  );
+
+  if(el){
+    const n=parseInt(el.textContent.replace(/\D/g,""),10);
+    if(!isNaN(n)) return n;
+  }
+
+  return Number(localStorage.getItem("familyFunPoints")||0);
+}
+
+function setArcadeProgress(){
+
+  const points=getMainPoints();
+
+  localStorage.setItem(
+    "familyFunPoints",
+    String(points)
+  );
+
+  let next=100;
+
+  for(const game of Object.values(ARCADE_GAMES)){
+    if(points<game.points){
+      next=game.points;
+      break;
+    }
+  }
+
+  const pct=Math.min(100,(points/next)*100);
+
+  const p=document.getElementById("arcadePoints");
+  const bar=document.getElementById("arcadeProgress");
+
+  if(p){
+    p.textContent=points+" / "+next;
+  }
+
+  if(bar){
+    bar.style.width=pct+"%";
+  }
+
+  updateArcadeCards(points);
+
+  checkNewUnlock(points);
+}
+
+function updateArcadeCards(points){
+
+  Object.entries(ARCADE_GAMES).forEach(([id,data])=>{
+
+    const card=document.getElementById(
+      "arcade-"+id
+    );
+
+    const lock=document.getElementById(
+      "lock-"+id
+    );
+
+    if(!card || !lock)return;
+
+    const button=card.querySelector(
+      ".arcade-play"
+    );
+
+    if(points>=data.points){
+
+      card.classList.remove("locked");
+
+      lock.textContent=
+        "🔓 UNLOCKED • "+data.title;
+
+      if(button){
+        button.disabled=false;
+      }
+
+    }else{
+
+      card.classList.add("locked");
+
+      lock.textContent=
+        "🔒 "+data.points+" POINTS";
+
+      if(button){
+        button.disabled=true;
+      }
+    }
+
+  });
+}
+
+function checkNewUnlock(points){
+
+  const old=Number(
+    localStorage.getItem("familyFunLastPoints")||0
+  );
+
+  Object.entries(ARCADE_GAMES).forEach(([id,data])=>{
+
+    const key="arcadeUnlocked_"+id;
+
+    if(
+      points>=data.points &&
+      !localStorage.getItem(key)
+    ){
+
+      localStorage.setItem(key,"1");
+
+      if(old<data.points){
+
+        showUnlock(
+          data.title,
+          data.game,
+          id
+        );
+
+      }
+
+    }
+
+  });
+
+  localStorage.setItem(
+    "familyFunLastPoints",
+    String(points)
+  );
+}
+
+function showUnlock(title,game,id){
+
+  document.getElementById(
+    "unlockTitle"
+  ).textContent=title;
+
+  document.getElementById(
+    "unlockGame"
+  ).textContent=
+    "🎮 "+game+" is now unlocked!";
+
+  document.getElementById(
+    "arcadeUnlock"
+  ).dataset.game=id;
+
+  document.getElementById(
+    "arcadeUnlock"
+  ).classList.add("show");
+
+  confetti();
+}
+
+function closeUnlock(){
+
+  document.getElementById(
+    "arcadeUnlock"
+  ).classList.remove("show");
+}
+
+function playUnlockedGame(){
+
+  const id=document.getElementById(
+    "arcadeUnlock"
+  ).dataset.game;
+
+  closeUnlock();
+
+  startArcadeGame(id);
+}
+
+function startArcadeGame(id){
+
+  const points=getMainPoints();
+
+  if(
+    !ARCADE_GAMES[id] ||
+    points<ARCADE_GAMES[id].points
+  ){
+
+    alert(
+      "Keep playing to unlock this game!"
+    );
+
+    return;
+  }
+
+  arcadeState={
+    current:id,
+    index:0,
+    score:0,
+    streak:0,
+    timer:null,
+    time:30
+  };
+
+  renderArcadeChallenge();
+}
+
+function renderArcadeChallenge(){
+
+  clearInterval(
+    arcadeState.timer
+  );
+
+  const game=
+    ARCADE_CHALLENGES[
+      arcadeState.current
+    ];
+
+  const challenge=
+    game[
+      arcadeState.index % game.length
+    ];
+
+  const box=
+    document.getElementById(
+      "arcadeGame"
+    );
+
+  if(!box)return;
+
+  box.innerHTML=`
+
+    <div class="arcade-game-header">
+
+      <strong>
+        ${ARCADE_GAMES[
+          arcadeState.current
+        ].game}
+      </strong>
+
+      <div>
+        🔥 Streak:
+        ${arcadeState.streak}
+      </div>
+
+      <div class="arcade-timer"
+           id="arcadeTimer">
+        ${arcadeState.current==="vault"
+          ?"∞"
+          :"30"}
+      </div>
+
+    </div>
+
+    <div class="arcade-question">
+      ${challenge.q}
+    </div>
+
+    <div class="arcade-options">
+
+      ${challenge.a.map(
+        (answer,i)=>`
+
+        <button
+          class="arcade-option"
+          onclick="arcadeAnswer(${i},this)"
+        >
+          ${answer}
+        </button>
+
+      `
+      ).join("")}
+
+    </div>
+
+    <div
+      id="arcadeFeedback"
+      style="
+        margin-top:18px;
+        font-weight:900;
+        min-height:30px;
+      "
+    ></div>
+  `;
+
+  if(
+    arcadeState.current!=="vault"
+  ){
+
+    arcadeState.time=30;
+
+    arcadeState.timer=setInterval(()=>{
+
+      arcadeState.time--;
+
+      const timer=
+        document.getElementById(
+          "arcadeTimer"
+        );
+
+      if(timer){
+        timer.textContent=
+          arcadeState.time;
+      }
+
+      if(
+        arcadeState.time<=0
+      ){
+
+        clearInterval(
+          arcadeState.timer
+        );
+
+        arcadeAnswer(
+          -1,
+          null
+        );
+
+      }
+
+    },1000);
+
+  }
+
+}
+
+function arcadeAnswer(index,button){
+
+  clearInterval(
+    arcadeState.timer
+  );
+
+  const game=
+    ARCADE_CHALLENGES[
+      arcadeState.current
+    ];
+
+  const challenge=
+    game[
+      arcadeState.index % game.length
+    ];
+
+  const buttons=
+    document.querySelectorAll(
+      ".arcade-option"
+    );
+
+  buttons.forEach(
+    b=>b.disabled=true
+  );
+
+  const correct=
+    index===challenge.c;
+
+  if(button){
+
+    button.classList.add(
+      correct
+        ?"correct"
+        :"wrong"
+    );
+
+  }
+
+  if(!correct){
+
+    if(buttons[challenge.c]){
+      buttons[
+        challenge.c
+      ].classList.add("correct");
+    }
+
+    arcadeState.streak=0;
+
+  }else{
+
+    arcadeState.streak++;
+
+    let multiplier=1;
+
+    if(
+      arcadeState.current==="double"
+    ){
+      multiplier=2;
+    }
+
+    if(
+      arcadeState.streak>=3
+    ){
+      multiplier+=1;
+    }
+
+    const earned=
+      10*multiplier;
+
+    arcadeState.score+=earned;
+
+  }
+
+  const feedback=
+    document.getElementById(
+      "arcadeFeedback"
+    );
+
+  if(feedback){
+
+    feedback.innerHTML=correct
+      ?`🔥 CORRECT! +${
+        arcadeState.current==="double"
+          ?20
+          :10
+      } POINTS`
+      :"❌ Not this time.";
+
+  }
+
+  setTimeout(()=>{
+
+    arcadeState.index++;
+
+    const gameLength=
+      ARCADE_CHALLENGES[
+        arcadeState.current
+      ].length;
+
+    if(
+      arcadeState.index>=gameLength
+    ){
+
+      finishArcadeGame();
+
+    }else{
+
+      renderArcadeChallenge();
+
+    }
+
+  },850);
+
+}
+
+function finishArcadeGame(){
+
+  const box=
+    document.getElementById(
+      "arcadeGame"
+    );
+
+  const bonus=
+    arcadeState.streak>=3
+      ?50
+      :0;
+
+  const finalScore=
+    arcadeState.score+
+    bonus;
+
+  box.innerHTML=`
+
+    <div class="arcade-result">
+
+      <div class="big">
+        ${
+          finalScore>=100
+            ?"🏆"
+            :"🎮"
+        }
+      </div>
+
+      <h2>
+        ${
+          finalScore>=100
+            ?"ABSOLUTE FIRE!"
+            :"NICE RUN!"
+        }
+      </h2>
+
+      <p>
+        You scored
+        <strong>
+          ${finalScore}
+        </strong>
+        arcade points.
+      </p>
+
+      ${
+        bonus
+          ?"<p>🔥 STREAK BONUS +50</p>"
+          :""
+      }
+
+      <button
+        class="arcade-play"
+        onclick="startArcadeGame(
+          '${arcadeState.current}'
+        )"
+      >
+        PLAY AGAIN →
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+function confetti(){
+
+  for(
+    let i=0;
+    i<70;
+    i++
+  ){
+
+    const piece=
+      document.createElement(
+        "div"
+      );
+
+    piece.className=
+      "confetti";
+
+    piece.style.left=
+      Math.random()*100+
+      "%";
+
+    piece.style.top=
+      "-30px";
+
+    piece.style.background=
+      [
+        "#ff3f81",
+        "#ff8a00",
+        "#ffd43b",
+        "#16c7a1",
+        "#653cff"
+      ][
+        Math.floor(
+          Math.random()*5
+        )
+      ];
+
+    piece.style.animationDelay=
+      Math.random()*0.7+
+      "s";
+
+    document.body.appendChild(
+      piece
+    );
+
+    setTimeout(
+      ()=>piece.remove(),
+      3500
+    );
+
+  }
+
+}
+
+/*
+   Keep the arcade synced with the main game.
+*/
+
+setInterval(
+  setArcadeProgress,
+  1500
+);
+
+setArcadeProgress();
