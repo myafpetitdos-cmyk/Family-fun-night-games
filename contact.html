@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Family Fun Games</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="index.html">FAMILY <span>FUN</span> GAMES</a>
+    <nav>
+      <a href="index.html#games">Games</a>
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+  </header>
+
+  <main class="section">
+    <div class="section-heading">
+      <div class="section-label">GET IN TOUCH</div>
+      <h2>Contact Us</h2>
+      <p>Have a question, feedback, or a new game suggestion? We'd love to hear from you.</p>
+    </div>
+
+    <div style="max-width: 600px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border-color); padding: 2.5rem; border-radius: 20px;">
+      <form onsubmit="handleSubmit(event)">
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem;">YOUR NAME</label>
+          <input type="text" required placeholder="Jane Doe" style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-main); font-size: 1rem;">
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem;">EMAIL ADDRESS</label>
+          <input type="email" required placeholder="jane@example.com" style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-main); font-size: 1rem;">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem;">MESSAGE</label>
+          <textarea rows="4" required placeholder="Tell us what you think..." style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-main); font-size: 1rem; resize: vertical;"></textarea>
+        </div>
+
+        <button type="submit" class="primary-btn" style="width: 100%;">SEND MESSAGE</button>
+      </form>
+
+      <div id="successMsg" style="display: none; text-align: center; color: var(--accent-green); font-weight: 700; margin-top: 1.5rem;">
+        ✅ Thank you! Your message has been sent successfully.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <strong>FAMILY FUN GAMES</strong>
+    <p>Play together. Think together.</p>
+    <small>© 2026 Family Fun Games</small>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.querySelector('form').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
 
