@@ -764,4 +764,25 @@ footer strong {
   display: block;
   margin-bottom: 0.25rem;
 }
+/* =====================================================
+   FOOTER LINKS STYLING FIX
+====================================================== */
+footer .footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1.25rem 0;
+}
+
+footer .footer-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+footer .footer-nav a:hover {
+  color: var(--accent-pink);
+}
 
