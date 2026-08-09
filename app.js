@@ -1603,3 +1603,16 @@ setInterval(
 );
 
 setArcadeProgress();
+// FAMILY FUN GAMES - PWA
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./sw.js")
+      .then(() => {
+        console.log("Family Fun Games is ready to install.");
+      })
+      .catch(error => {
+        console.error("PWA setup error:", error);
+      });
+  });
+}
