@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Fun Games - Fixed</title>
+  <style>
+    :root { --primary: #ff4757; --bg: #1e1e2f; --card-bg: #2d2d44; --text: #ffffff; --success: #2ed573; }
+    * { box-sizing: border-box; }
+    body { font-family: sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+    header { background: var(--card-bg); padding: 20px; display: flex; justify-content: space-between; }
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; background: var(--card-bg); padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center; }
+    .stats-bar strong { font-size: 1.5rem; color: #00d2d3; display: block; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+    .card { background: var(--card-bg); padding: 20px; border-radius: 8px; cursor: pointer; text-align: center; }
+    .progress-box { background: #252538; padding: 15px; border-radius: 8px; margin: 20px 0; }
+    .progress-track { background: #111; height: 16px; border-radius: 8px; overflow: hidden; margin-top: 10px; }
+    .progress-fill { background: var(--success); height: 100%; width: 0%; transition: width 0.3s; }
+    .status { margin-top: 10px; font-weight: bold; padding: 8px; border-radius: 4px; }
+    .unlocked { background: var(--success); color: #000; }
+    .locked { background: #444; color: #aaa; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>FAMILY FUN GAMES</h2>
+  </header>
+
+  <div class="stats-bar">
+    <div><strong id="pts">0</strong><span>POINTS</span></div>
+    <div><strong id="strk">0</strong><span>STREAK</span></div>
+    <div><strong id="wns">0</strong><span>WINS</span></div>
+    <div><strong id="lvl">1</strong><span>LEVEL</span></div>
+  </div>
+
+  <button onclick="addPts(50)" style="padding: 12px 24px; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+    +50 POINTS (TEST BUTTON)
+  </button>
+
+  <h3>THE ARCADE VAULT</h3>
+  <div class="progress-box">
+    <div style="display:flex; justify-content:space-between;">
+      <span id="vTitle">Next Unlock: Double Down</span>
+      <span id="vText">0 / 100</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="vBar"></div></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" onclick="playGame('Double Down', 100)">
+      🎯 <h3>DOUBLE DOWN</h3>
+      <div id="st1" class="status locked">🔒 100 POINTS</div>
+    </div>
+    <div class="card" onclick="playGame('Tropical Pop', 250)">
+      🌴 <h3>TROPICAL POP</h3>
+      <div id="st2" class="status locked">🔒 250 POINTS</div>
+    </div>
+    <div class="card" onclick="playGame('Mystery Vault', 500)">
+      🔐 <h3>MYSTERY VAULT</h3>
+      <div id="st3" class="status locked">🔒 500 POINTS</div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize or fallback
+    let pts = parseInt(localStorage.getItem('ffg_points')) || 0;
+    let wns = parseInt(localStorage.getItem('ffg_wins')) || 0;
+
+    function render() {
+      document.getElementById('pts').innerText = pts;
+      document.getElementById('wns').innerText = wns;
+      document.getElementById('lvl').innerText = Math.floor(pts / 100) + 1;
+
+      let target = 100;
+      if (pts >= 250) target = 500;
+      else if (pts >= 100) target = 250;
+
+      let pct = Math.min(100, (pts / target) * 100);
+      document.getElementById('vBar').style.width = pct + '%';
+      document.getElementById('vText').innerText = pts + ' / ' + target;
+
+      updateStatus('st1', 100);
+      updateStatus('st2', 250);
+      updateStatus('st3', 500);
+
+      localStorage.setItem('ffg_points', pts);
+      localStorage.setItem('ffg_wins', wns);
+    }
+
+    function updateStatus(id, threshold) {
+      let el = document.getElementById(id);
+      if (pts >= threshold) {
+        el.innerText = "🔓 UNLOCKED - PLAY NOW";
+        el.className = "status unlocked";
+      } else {
+        el.innerText = "🔒 " + threshold + " POINTS";
+        el.className = "status locked";
+      }
+    }
+
+    function addPts(n) {
+      pts += n;
+      wns += 1;
+      render();
+    }
+
+    function playGame(name, req) {
+      if (pts >= req) {
+        alert("Launching " + name + "!");
+      } else {
+        alert("Need " + req + " points!");
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>
 
