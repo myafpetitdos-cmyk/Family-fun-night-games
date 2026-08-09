@@ -1,1 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Fun Games</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<header class="site-header">
+  <a class="logo" href="#">
+    FAMILY <span>FUN</span> GAMES
+  </a>
+
+  <nav>
+    <a href="#games">Games</a>
+    <a href="#rewards">Rewards</a>
+    <a href="#achievements">Achievements</a>
+  </nav>
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-tag">PLAY • THINK • COMPETE</div>
+
+    <h1>
+      Family game night,
+      <span>leveled up.</span>
+    </h1>
+
+    <p>
+      Brain teasers, trivia, secret codes, riddles,
+      mysteries and fast challenges for the whole family.
+    </p>
+
+    <button class="primary-btn" onclick="scrollToGames()">
+      START PLAYING
+    </button>
+
+  </section>
+
+
+  <!-- PLAYER BAR -->
+
+  <section class="player-bar">
+
+    <div class="player-stat">
+      <strong id="points">0</strong>
+      <span>POINTS</span>
+    </div>
+
+    <div class="player-stat">
+      <strong id="streak">0</strong>
+      <span>STREAK</span>
+    </div>
+
+    <div class="player-stat">
+      <strong id="wins">0</strong>
+      <span>WINS</span>
+    </div>
+
+    <div class="player-stat">
+      <strong id="level">1</strong>
+      <span>LEVEL</span>
+    </div>
+
+  </section>
+
+
+  <!-- GAME ROOM -->
+
+  <section id="games" class="section">
+
+    <div class="section-heading">
+      <div class="section-label">THE GAME ROOM</div>
+      <h2>Pick your challenge.</h2>
+      <p>
+        Every game has Beginner, Intermediate and Expert challenges.
+      </p>
+    </div>
+
+
+    <div class="game-grid">
+
+
+      <article class="game-card cyan" onclick="chooseGame('brain')">
+        <div class="game-number">01</div>
+        <h3>Brain Teasers</h3>
+        <p>
+          Tricky questions that make you stop,
+          think and look twice.
+        </p>
+        <button>PLAY →</button>
+      </article>
+
+
+      <article class="game-card yellow" onclick="chooseGame('trivia')">
+        <div class="game-number">02</div>
+        <h3>Trivia Rush</h3>
+        <p>
+          Science, animals, history, geography,
+          sports and surprising facts.
+        </p>
+        <button>PLAY →</button>
+      </article>
+
+
+      <article class="game-card coral" onclick="chooseGame('decode')">
+        <div class="game-number">03</div>
+        <h3>Decode It</h3>
+        <p>
+          Crack secret messages, patterns,
+          symbols and hidden words.
+        </p>
+        <button>PLAY →</button>
+      </article>
+
+
+      <article class="game-card green" onclick="chooseGame('rebus')">
+        <div class="game-number">04</div>
+        <h3>Rebus Puzzles</h3>
+        <p>
+          Look at the clues differently.
+          Can you discover the hidden phrase?
+        </p>
+        <button>PLAY →</button>
+      </article>
+
+
+      <article class="game-card purple" onclick="chooseGame('number')">
+        <div class="game-number">05</div>
+        <h3>Number Ninja</h3>
+        <p>
+          Patterns, math tricks and number
+          challenges designed to fool you.
+        </p>
+        <button>PLAY →</button>
+      </article>
+
+
+      <article class="game-card orange" onclick="chooseGame('word')">
+        <div class="game-number">06</div>
+        <h3>Word Scramble</h3>
+        <p>
+          Unscramble words and beat the clock.
+        </p>
+        <button>PLAY →</button>
+      </article>
+
+
+      <article class="game-card blue" onclick="chooseGame('mystery')">
+        <div class="game-number">07</div>
+        <h3>Mystery Case</h3>
+        <p>
+          Follow the clues and solve the case.
+        </p>
+        <button>PLAY →</button>
+      </article>
+
+
+      <article class="game-card pink" onclick="chooseGame('quick')">
+        <div class="game-number">08</div>
+        <h3>Quick Fire</h3>
+        <p>
+          Fast questions. Fast decisions.
+          How long can your streak survive?
+        </p>
+        <button>PLAY →</button>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- DIFFICULTY -->
+
+  <section id="difficulty" class="section difficulty-section">
+
+    <div class="section-heading">
+      <div class="section-label">CHOOSE YOUR LEVEL</div>
+      <h2 id="selectedGameTitle">Choose a game first.</h2>
+      <p id="selectedGameDescription">
+        Select a game above to unlock the difficulty levels.
+      </p>
+    </div>
+
+
+    <div class="difficulty-grid">
+
+      <button class="difficulty beginner" onclick="startGame('beginner')">
+        <span>LEVEL 01</span>
+        <strong>BEGINNER</strong>
+        <small>Warm up your brain.</small>
+      </button>
+
+      <button class="difficulty intermediate" onclick="startGame('intermediate')">
+        <span>LEVEL 02</span>
+        <strong>INTERMEDIATE</strong>
+        <small>Now we're getting tricky.</small>
+      </button>
+
+      <button class="difficulty expert" onclick="startGame('expert')">
+        <span>LEVEL 03</span>
+        <strong>EXPERT</strong>
+        <small>Think very carefully.</small>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- GAME SCREEN -->
+
+  <section id="gameScreen" class="game-screen">
+
+    <div class="game-top">
+
+      <div>
+        <span id="gameDifficulty" class="difficulty-pill">
+          BEGINNER
+        </span>
+
+        <h2 id="activeGameTitle">
+          Challenge
+        </h2>
+      </div>
+
+      <div class="question-count">
+        QUESTION
+        <strong id="questionNumber">1</strong>
+        /
+        <strong id="questionTotal">10</strong>
+      </div>
+
+    </div>
+
+
+    <div class="question-card">
+
+      <div class="question-type" id="questionType">
+        BRAIN CHALLENGE
+      </div>
+
+      <h3 id="questionText">
+        Question loading...
+      </h3>
+
+    </div>
+
+
+    <div id="answerArea" class="answer-grid"></div>
+
+
+    <div id="gameMessage" class="game-message"></div>
+
+
+    <button
+      id="nextButton"
+      class="next-btn"
+      onclick="nextQuestion()"
+      style="display:none;"
+    >
+      NEXT CHALLENGE →
+    </button>
+
+  </section>
+
+
+  <!-- ACHIEVEMENTS -->
+
+  <section id="achievements" class="section">
+
+    <div class="section-heading">
+      <div class="section-label">ACHIEVEMENTS</div>
+      <h2>Earn your bragging rights.</h2>
+    </div>
+
+
+    <div class="achievement-grid">
+
+      <div id="badgeFirst" class="achievement locked">
+        <strong>FIRST WIN</strong>
+        <span>Answer your first question.</span>
+      </div>
+
+      <div id="badgeFive" class="achievement locked">
+        <strong>FIVE WINS</strong>
+        <span>Get five questions right.</span>
+      </div>
+
+      <div id="badgeStreak" class="achievement locked">
+        <strong>HOT STREAK</strong>
+        <span>Reach a five-question streak.</span>
+      </div>
+
+      <div id="badge250" class="achievement locked">
+        <strong>250 CLUB</strong>
+        <span>Earn 250 points.</span>
+      </div>
+
+      <div id="badge500" class="achievement locked">
+        <strong>BRAIN MASTER</strong>
+        <span>Earn 500 points.</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- REWARDS -->
+
+  <section id="rewards" class="section">
+
+    <div class="section-heading">
+      <div class="section-label">REWARD VAULT</div>
+      <h2>You've earned it.</h2>
+      <p>
+        Spend your points on digital titles and achievements.
+      </p>
+    </div>
+
+
+    <div class="reward-grid">
+
+      <div class="reward-card">
+
+        <div class="reward-cost">100</div>
+
+        <h3>SUPER STAR</h3>
+
+        <p>
+          Unlock the Super Star title.
+        </p>
+
+        <button onclick="redeemReward(100, 'Super Star')">
+          UNLOCK
+        </button>
+
+      </div>
+
+
+      <div class="reward-card">
+
+        <div class="reward-cost">250</div>
+
+        <h3>CHAMPION</h3>
+
+        <p>
+          Unlock the Champion title.
+        </p>
+
+        <button onclick="redeemReward(250, 'Champion')">
+          UNLOCK
+        </button>
+
+      </div>
+
+
+      <div class="reward-card">
+
+        <div class="reward-cost">500</div>
+
+        <h3>BRAIN ROYALTY</h3>
+
+        <p>
+          Unlock the ultimate player title.
+        </p>
+
+        <button onclick="redeemReward(500, 'Brain Royalty')">
+          UNLOCK
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <strong>FAMILY FUN GAMES</strong>
+
+  <p>
+    Play together. Think together.
+  </p>
+
+  <small>
+    © 2026 Family Fun Games
+  </small>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
