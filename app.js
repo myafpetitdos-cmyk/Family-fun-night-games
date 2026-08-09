@@ -1616,3 +1616,15 @@ if ("serviceWorker" in navigator) {
       });
   });
 }
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./sw.js")
+      .then(() => {
+        console.log("Family Fun Games PWA ready.");
+      })
+      .catch(error => {
+        console.error("PWA setup error:", error);
+      });
+  });
+}
