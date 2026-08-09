@@ -1,1 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Fun Games - Leveled Up</title>
+  
+  <style>
+    :root {
+      --primary: #ff4757;
+      --bg: #1e1e2f;
+      --card-bg: #2d2d44;
+      --text: #ffffff;
+      --success: #2ed573;
+    }
+    
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: var(--card-bg);
+    }
+
+    header a.logo {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    header a span { color: var(--primary); }
+
+    nav { display: flex; gap: 20px; }
+    nav a { font-size: 0.9rem; color: #aaa; text-decoration: none; }
+    nav a:hover { color: var(--text); }
+
+    main {
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .hero-section { text-align: center; padding: 40px 20px; }
+    .hero-section h1 span { color: var(--primary); }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 15px;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .stats-bar strong { display: block; font-size: 1.8rem; color: #00d2d3; }
+    .stats-bar span { font-size: 0.8rem; color: #aaa; letter-spacing: 1px; }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+    }
+
+    .card:hover { border-color: var(--primary); transform: translateY(-3px); }
+    .card-number { font-size: 0.8rem; color: #aaa; margin-bottom: 10px; }
+    .card h3 { margin: 0 0 10px 0; }
+    .card p { margin: 0; font-size: 0.9rem; color: #ccc; }
+
+    .progress-box {
+      background: #252538;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      border: 1px solid #3d3d5c;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .progress-track {
+      background: #151522;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 16px;
+      width: 100%;
+    }
+
+    .progress-fill {
+      background: var(--success);
+      height: 100%;
+      width: 0%;
+      transition: width 0.5s ease-in-out;
+    }
+
+    .arcade-status {
+      font-weight: bold;
+      margin-top: 15px;
+      font-size: 0.9rem;
+      padding: 8px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .unlocked-btn {
+      background: var(--success);
+      color: #000;
+      cursor: pointer;
+    }
+
+    .locked-btn {
+      background: rgba(255,255,255,0.05);
+      color: #aaa;
+    }
+
+    /* Modal Popup Overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+
+    .modal-content button {
+      background: var(--primary);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: var(--card-bg);
+      margin-top: 40px;
+      color: #aaa;
+    }
+
+    footer a { color: #aaa; margin: 0 10px; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo">FAMILY <span>FUN</span> GAMES</a>
+    <nav>
+      <a href="#games">Games</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#arcadeVault">Arcade</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div style="color: #aaa; font-weight: bold; letter-spacing: 1px;">PLAY • THINK • COMPETE</div>
+      <h1>Family game night, <span>leveled up.</span></h1>
+      <p>Brain teasers, trivia, secret codes, riddles, mysteries and fast challenges for the whole family.</p>
+      <button style="background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-top: 15px;" onclick="addPoints(20)">START PLAYING (+20 PTS)</button>
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="stats-bar">
+      <div>
+        <strong id="pointsDisplay">0</strong>
+        <span>POINTS</span>
+      </div>
+      <div>
+        <strong id="streakDisplay">0</strong>
+        <span>STREAK</span>
+      </div>
+      <div>
+        <strong id="winsDisplay">0</strong>
+        <span>WINS</span>
+      </div>
+      <div>
+        <strong id="levelDisplay">1</strong>
+        <span>LEVEL</span>
+      </div>
+    </section>
+
+    <!-- GAMES SECTION -->
+    <section id="games">
+      <div style="color: #aaa; font-weight: bold;">THE GAME ROOM</div>
+      <h2>Pick your challenge.</h2>
+      <p>Click a game to simulate earning points.</p>
+
+      <div class="grid-container">
+        <article class="card" onclick="addPoints(20)">
+          <div class="card-number">01</div>
+          <h3>Brain Teasers</h3>
+          <p>Tricky questions that make you stop, think and look twice.</p>
+        </article>
+        <article class="card" onclick="addPoints(20)">
+          <div class="card-number">02</div>
+          <h3>Trivia Rush</h3>
+          <p>Science, animals, history, geography, sports and surprising facts.</p>
+        </article>
+        <article class="card" onclick="addPoints(20)">
+          <div class="card-number">03</div>
+          <h3>Decode It</h3>
+          <p>Crack secret messages, patterns, symbols and hidden words.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ARCADE VAULT SECTION -->
+    <section id="arcadeVault">
+      <div style="color: #aaa; font-weight: bold; margin-top: 40px;">THE ARCADE VAULT</div>
+      <h2>Unlock Your Next Game 🎮</h2>
+      <p>Earn points, win titles and unlock completely new games.</p>
+
+      <!-- Dynamic Progress Box -->
+      <div class="progress-box">
+        <div class="progress-header">
+          <span id="nextUnlockTitle">🏆 Your Progress</span>
+          <span id="progressText">0 / 100</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="grid-container">
+        <article class="card" onclick="launchGame('Double Down', 100)">
+          <div class="card-number">🎯</div>
+          <h3>DOUBLE DOWN</h3>
+          <p>Risk it for double points. Fast decisions, tricky clues and escalating streak bonuses.</p>
+          <div class="arcade-status locked-btn" id="arcadeStatus1">🔒 100 POINTS</div>
+        </article>
+        
+        <article class="card" onclick="launchGame('Tropical Pop', 250)">
+          <div class="card-number">🌴</div>
+          <h3>TROPICAL POP</h3>
+          <p>Spot patterns, remember the board, find the impostor and survive wild rounds.</p>
+          <div class="arcade-status locked-btn" id="arcadeStatus2">🔒 250 POINTS</div>
+        </article>
+        
+        <article class="card" onclick="launchGame('Mystery Vault', 500)">
+          <div class="card-number">🔐</div>
+          <h3>MYSTERY VAULT</h3>
+          <p>Investigate clues, eliminate suspects and crack the final combination.</p>
+          <div class="arcade-status locked-btn" id="arcadeStatus3">🔒 500 POINTS</div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- GAME MODAL POPUP -->
+  <div class="modal-overlay" id="gameModal">
+    <div class="modal-content">
+      <h2 id="modalTitle">Game Title</h2>
+      <p id="modalDescription">Game is loading...</p>
+      <button onclick="closeModal()">Close Game</button>
+    </div>
+  </div>
+
+  <footer>
+    <strong style="color: var(--text);">FAMILY FUN GAMES</strong>
+    <p>Play together. Think together.</p>
+    <div style="margin-top: 15px;">
+      <a href="#">About Us</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Contact</a>
+    </div>
+    <small style="display: block; margin-top: 20px;">© 2026 Family Fun Games</small>
+  </footer>
+
+  <script>
+    let gameState = {
+      points: parseInt(localStorage.getItem('ffg_points')) || 0,
+      streak: parseInt(localStorage.getItem('ffg_streak')) || 0,
+      wins: parseInt(localStorage.getItem('ffg_wins')) || 0,
+      level: parseInt(localStorage.getItem('ffg_level')) || 1
+    };
+
+    function updateUI() {
+      // Sync Top Stats Bar
+      document.getElementById('pointsDisplay').innerText = gameState.points;
+      document.getElementById('streakDisplay').innerText = gameState.streak;
+      document.getElementById('winsDisplay').innerText = gameState.wins;
+      document.getElementById('levelDisplay').innerText = gameState.level;
+
+      // Sync Progress Bar Target relative to highest unlock
+      let targetPoints = 100;
+      let nextTitle = "🏆 Next Unlock: Double Down";
+
+      if (gameState.points >= 500) {
+        targetPoints = 500;
+        nextTitle = "🏆 All Vault Games Unlocked!";
+      } else if (gameState.points >= 250) {
+        targetPoints = 500;
+        nextTitle = "🏆 Next Unlock: Mystery Vault";
+      } else if (gameState.points >= 100) {
+        targetPoints = 250;
+        nextTitle = "🏆 Next Unlock: Tropical Pop";
+      }
+
+      let progressPercent = Math.min(100, (gameState.points / targetPoints) * 100);
+      document.getElementById('progressBar').style.width = progressPercent + '%';
+      document.getElementById('progressText').innerText = gameState.points + ' / ' + targetPoints;
+      document.getElementById('nextUnlockTitle').innerText = nextTitle;
+
+      // Sync Unlock Cards
+      updateCardStatus('arcadeStatus1', 100);
+      updateCardStatus('arcadeStatus2', 250);
+      updateCardStatus('arcadeStatus3', 500);
+
+      // Save updated values to LocalStorage
+      localStorage.setItem('ffg_points', gameState.points);
+      localStorage.setItem('ffg_streak', gameState.streak);
+      localStorage.setItem('ffg_wins', gameState.wins);
+      localStorage.setItem('ffg_level', gameState.level);
+    }
+
+    function updateCardStatus(elementId, requiredPoints) {
+      let el = document.getElementById(elementId);
+      if (gameState.points >= requiredPoints) {
+        el.innerHTML = "🔓 UNLOCKED - PLAY NOW";
+        el.className = "arcade-status unlocked-btn";
+      } else {
+        el.innerHTML = "🔒 " + requiredPoints + " POINTS";
+        el.className = "arcade-status locked-btn";
+      }
+    }
+
+    function addPoints(amount) {
+      gameState.points += amount;
+      gameState.wins += 1;
+      gameState.streak += 1;
+      gameState.level = Math.floor(gameState.points / 100) + 1;
+      updateUI();
+    }
+
+    function launchGame(gameName, requiredPoints) {
+      if (gameState.points >= requiredPoints) {
+        document.getElementById('modalTitle').innerText = gameName;
+        document.getElementById('modalDescription').innerText = "Welcome to " + gameName + "! Game session loaded successfully.";
+        document.getElementById('gameModal').style.display = "flex";
+      } else {
+        alert("You need " + requiredPoints + " points to unlock " + gameName + ". You currently have " + gameState.points + " points.");
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('gameModal').style.display = "none";
+    }
+
+    window.onload = function() {
+      updateUI();
+    };
+  </script>
+
+</body>
+</html>
 
